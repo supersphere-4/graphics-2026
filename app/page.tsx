@@ -2,12 +2,10 @@
 import Teams from "./live/data/placeholderrelaydata.json";
 import Image from "next/image";
 import Link from "next/link";
-import { connection } from "next/server";
 import {useState, useEffect} from "react";
 
 export default async function Home() {
 
-  await connection();
   const main_stream_links = Teams.map((team) => {
       return (           
         <Link

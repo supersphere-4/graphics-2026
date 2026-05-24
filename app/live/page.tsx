@@ -7,9 +7,11 @@ import MainTeamBanner from "./MainTeamBanner"
 import Teams from "./data/teams_new.json"
 import { Container, Row, Col } from "reactstrap"
 import { useSearchParams } from "next/navigation";
+import { connection } from "next/server";
 
-export default function Live() {
+export default async function Live() {
 
+    await connection();
     const searchParams = useSearchParams()
     console.log("search params: " + searchParams.get("main"))
     const main = Number(searchParams.get("main"))
