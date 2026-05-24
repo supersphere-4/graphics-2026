@@ -11,8 +11,8 @@ import { connection } from "next/server";
 
 export default async function Live() {
 
-    await connection();
     const searchParams = useSearchParams()
+    await connection();
     console.log("search params: " + searchParams.get("main"))
     const main = Number(searchParams.get("main"))
     const currRuns = [1, 2, 3, 11, 0, 12, 6, 4]
