@@ -1,15 +1,14 @@
-'use client';
 import Teams from "./live/data/placeholderrelaydata.json";
 import Image from "next/image";
 import Link from "next/link";
-import {useState, useEffect} from "react";
+import Games from "./live/data/games.json";
 
-export default async function Home() {
+export default function Home() {
 
   const main_stream_links = Teams.map((team) => {
       return (           
         <Link
-            className={`rounded-full border border-solid transition-colors flex items-center justify-center bg-black text-background gap-4 hover:bg-[#ff0000] dark:hover:bg-[${team.color}] text-[64px] h-20 sm:h-40 px-5 sm:px-20 sm:w-auto`}
+            className={`rounded-full border border-solid transition-colors flex items-center justify-center bg-black text-background gap-4 hover:bg-[#ff0000] text-[64px] h-20 sm:h-40 px-5 sm:px-20 sm:w-auto front-page`}
             href={{
               pathname:'/live',
               query: {main: team.number}
@@ -17,7 +16,7 @@ export default async function Home() {
             target="_blank"
             rel="noopener noreferrer"
             key={`team-${team.number}`}
-          >
+        >
             {team.name}
         </Link>
       )
@@ -35,25 +34,13 @@ export default async function Home() {
           height={1200}
           priority
         />
-        <div className="flex gap-4 items-center flex-row">
+        <div className="flex gap-8 m-4 items-center flex-row">
           {main_stream_links}
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[32px] pb-16 flex-wrap items-center justify-center">
-        <Image src='/logos/sm64.png' alt='no' width={300} height={300}/>
-        <Image src='/logos/sms.png' alt='no' width={300} height={300}/>
-        <Image src='/logos/smg1.png' alt='no' width={300} height={300}/>
-        <Image src='/logos/smg2.png' alt='no' width={300} height={300}/>
-        <Image src='/logos/bk.png' alt='no' width={300} height={300}/>
-        <Image src='/logos/bt.png' alt='no' width={300} height={300}/>
-        <Image src='/logos/dk64.png' alt='no' width={300} height={300}/>
-        <Image src='/logos/c1.png' alt='no' width={300} height={300}/>
-        <Image src='/logos/c2.png' alt='no' width={300} height={300}/>
-        <Image src='/logos/c3.png' alt='no' width={300} height={300}/>
-        <Image src='/logos/s1.png' alt='no' width={300} height={300}/>
-        <Image src='/logos/s2.png' alt='no' width={300} height={300}/>
-        <Image src='/logos/s3.png' alt='no' width={300} height={300}/>
-      </footer>
+      <div className="row-start-4 flex gap-[32px] pb-32 flex-wrap items-center justify-center">
+        {Games.map((game) => <Image src={`/logos/${game[1]}.png`} alt='Game logo' width={360} height={360} key={`logo-${game[1]}`}/>)}
+      </div>
     </div>
   );
 }

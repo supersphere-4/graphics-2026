@@ -1,53 +1,31 @@
-'use server'
+'use client'
 import Image from "next/image";
 import TwitchEmbed from "./TwitchEmbed";
 import MainTwitchEmbed from "./MainTwitchEmbed"
+import MainTeamBanner from "./MainTeamBanner";
 import TeamBanner from "./TeamBanner"
 import Teams from "./data/teams_new.json"
 import { Suspense } from 'react'
 import { Container, Row, Col } from "react-bootstrap";
-import { connection } from "next/server";
+import { useSearchParams } from 'next/navigation'
 
 type SearchParams = {
     searchParams?: Promise<Record<string, string>>
 }
 
-export default async function Live({searchParams} : SearchParams) {
+export default function Live({searchParams} : SearchParams) {
 
-    await connection();
-    const params = new URLSearchParams(await searchParams);
-    
-    
-    
+    const params = useSearchParams();
+    // const router = useRouter();
     console.log("search params: " + params.get("main"))
     const main = Number(params.get("main"))
-    const currRuns = [1, 2, 3, 11, 0, 12, 6, 4]
-    const teamEmotePaths = [
-        '/logos/team_emotes/rusty_bucket_babes.png',
-        '/logos/team_emotes/grape_apes.png',
-        '/logos/team_emotes/silly_willies.png',
-        '/logos/team_emotes/peach_and_co.png',
-        '/logos/team_emotes/mintallyinsane.png',
-        '/logos/team_emotes/hot.png',
-        '/logos/team_emotes/green_tea_m.png',
-        '/logos/team_emotes/gaslight.png'
-    ]
+    const main_team = Teams.find((team) => team.team_number == main)
+    const currRuns = [6, 5, 7, 2, 0, 11, 10, 1]
     const sub_streams = Teams.map((team) => {
-        if (team.team_number == main) {
-            return (
-                    <Row key={team.team_name} className={`border flex ${team.team_color} p-2`}>
-                        <Col style={{position: "relative", width: 640, height: 360}}>
-                            <Image className={team.team_color} 
-                                   src={teamEmotePaths[team.team_number - 1]} 
-                                   alt='1545 Team Logo' key={`team-${team.team_number}`} 
-                                   fill
-                                   style={{objectFit: "contain"}}/>
-                        </Col>
-                    </Row>
-        )}
-        return (<TwitchEmbed team={team} 
+        return (<TwitchEmbed team={team}
+                             main={main}
                              currRun={currRuns[team.team_number - 1]} 
-                             key={`team-${team.team_number}`}/>
+                             key={`team-${team.team_number}-mini`}/>
         )
     })
 
@@ -60,14 +38,24 @@ export default async function Live({searchParams} : SearchParams) {
     })
 
     return (
-    <Suspense fallback={<div className="m-4 flex justify-items-center"><Image className="m-4 justify-content" src="/logos/1545.png" alt="1545 logo" width={1000} height={1000} priority/></div>}>
+    <Suspense fallback={<div className="flex flex-col gap-[32px] row-start-2 items-center"><Image className="m-4" src="/logos/1545.png" alt="1545 logo" width={1000} height={1000} priority/></div>}>
         <Container className="page-feed" fluid>
-            <Row className="flex m-6">
-                <Col>{banners}</Col>
-                <Col><MainTwitchEmbed main={Teams.find((team) => team.team_number == main)} currRun={currRuns[main - 1]} /></Col>
+            <Row className="flex m-4">
+                <Col className="m-4 border-8" style={{borderColor:"transparent"}}>
+                    {banners}
+                </Col>
+                <Col className={`m-4 main-stream border-8 ${main_team?.team_color} flex`} key={`${main_team?.team_color}-video-main`}>
+                    <MainTwitchEmbed main={main_team} currRun={currRuns[Teams[main - 1].team_number - 1]} />
+                    </Col>
+                <Col className={`m-4 border-8 ${main_team?.team_color} flex`} key={`${main_team?.team_name} stats`}>
+                    <MainTeamBanner main={main_team} currRun={currRuns[Teams[main - 1].team_number - 1]}/>
+                </Col>
             </Row>
-            <Row className="flex grid-flow-row gap-13 m-7 sub-streams">
-                {sub_streams}
+            <Row className="my-40 flex flex-wrap sub-streams justify-center gap-36">
+                {sub_streams.slice(0, 4)}
+            </Row>
+            <Row className="my-40 flex flex-wrap sub-streams items-center justify-center gap-36">
+                {sub_streams.slice(-4)}
             </Row>
         </Container>
     </Suspense>

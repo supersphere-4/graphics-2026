@@ -1,21 +1,47 @@
 import {Col, Row} from "react-bootstrap";
+import Image from "next/image";
 import RunnerInfo from "./data/runnerinfo_new.json"
 
-const TwitchEmbed = ({team, currRun}) => {
+const TwitchEmbed = ({team, main, currRun}) => {
+
+        const teamEmotePaths = [
+            '/logos/team_emotes/rusty_bucket_babes.png',
+            '/logos/team_emotes/grape_apes.png',
+            '/logos/team_emotes/silly_willies.png',
+            '/logos/team_emotes/peach_and_co.png',
+            '/logos/team_emotes/mintallyinsane.png',
+            '/logos/team_emotes/hot.png',
+            '/logos/team_emotes/green_tea_m.png',
+            '/logos/team_emotes/gaslight.png'
+        ]
 
         const name = team.schedule.runs[currRun].name;
-        let src = "https://player.twitch.tv/?channel=" + team.schedule.runs[currRun].name + "&parent=localhost&autoplay=true&muted=true";
         const twitch = RunnerInfo.find((runner) => runner.name == name).twitch;
+        let src = "https://player.twitch.tv/?channel=" + (team.schedule.runs[currRun].name) + "&parent=localhost&autoplay=true&muted=true";
+        
+
+        const scale = 1.
+        const width = 640 * scale
+        const height = 360 * scale
+
         if (twitch) {
             src = "https://player.twitch.tv/?channel=" + twitch + "&parent=localhost&autoplay=true&muted=true";
         }
-
+        if (team.team_number == main) {
+            return (
+                    <Col className={`border-8 flex ${team.team_color} team-placeholder`} key={team.team_name}>
+                        <Image className={`${team.team_color}`} 
+                                src={teamEmotePaths[team.team_number - 1]} 
+                                alt='1545 Team Logo' key={`team-${team.team_number}`} 
+                                fill
+                                style={{objectFit:"contain"}}
+                              />
+                    </Col>
+        )}
         return (
-            <Row key={team.team_name}>
-                <Col className={`border flex-col ${team.team_color} p-2`}>
-                    <iframe src={src} height={360} width={640}/>
+                <Col className={`border-8 flex ${team.team_color} team-sub-stream`} key={team.team_name}>
+                    <iframe src={src} width={width} height={height}/>
                 </Col>
-            </Row>
         )
 };
 
