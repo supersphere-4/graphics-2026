@@ -16,10 +16,9 @@ const MainTeamBanner = ({main, currRun, runsCompleted, info}) => {
         const pb = main.schedule.runs[currRun].submission_pb;
         const final_pb = (main.schedule.runs[currRun].final_pb);
         const lp = (main.schedule.runs[currRun].lp);
-        console.log(main.schedule.runs[currRun])
         const run_info = (final_pb ? ["Submission PB: " + pb,"Final PB: " + final_pb,"League Points: " + lp][info % 3] : "PB: " + pb)
 
-        let width = 0
+        let width;
         const gamesCompleted = Games.map((game) => {
                 let src = "/logos/" + game[1] + ".png";
                 if (game[0].includes('Mario')) {
@@ -29,9 +28,9 @@ const MainTeamBanner = ({main, currRun, runsCompleted, info}) => {
                 }
                 return <Col className={` ${main.team_color}`}
                             key={`team-${main.team_number}-${game[1]}`}>
-                                <Image src={src} alt='Game logo' width={width} height={width}
+                                <Image src={src} alt={`${game[0]} logo`} width={width} height={width}
                                        className={run_order.includes(Games.indexOf(game)) ? "complete" :
-                                                  currRun == Games.indexOf(game) ? "in-progress" : "incomplete"}/>
+                                                           currRun == Games.indexOf(game) ? "in-progress" : "incomplete"}/>
                        </Col>
             }
     )
@@ -54,7 +53,7 @@ const MainTeamBanner = ({main, currRun, runsCompleted, info}) => {
                         <Col className="flex justify-center">
                             <Image className={`${main.team_color} curr-game m-4 py-8`} 
                                    src={'/logos/' + Games[currRun][1] + '.png'} 
-                                   alt='Current game logo'
+                                   alt={`${Games[currRun][0]} logo`}
                                    key={`team-${main.team_number}-${Games[currRun][1]}`}
                                    id={Games[currRun][1]}
                                    width={500}

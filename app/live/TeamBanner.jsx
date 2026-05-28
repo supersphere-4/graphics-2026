@@ -17,8 +17,8 @@ const TeamBanner = ({team, currRun, main}) => {
                         key={team.team_name}>
                         <Col>
                             <Image className={team.team_color + ' curr-game'} 
-                                src={'/logos/' + Games[currRun][1] + '.png'} 
-                                alt='Current game logo'
+                                src={`/logos/${Games[currRun][1]}.png`} 
+                                alt={`${Games[currRun][0]} logo`}
                                 key={`team-${team.team_number}`}
                                 id={Games[currRun][1]}
                                 width={500} height={500}

@@ -94,3 +94,20 @@ progress::-webkit-progress-value {
 Link .front-page {
   font-size: 64px;
 }
+
+.team-control {
+  width: auto;
+  height: 180px;
+}
+
+.team-control #sm64 {
+  transform: translate(0%, -20%);
+}
+
+.team-control *.not-running {
+  filter:grayscale(100%);
+}
+
+.team-control *:hover {
+  filter:var(--main-team-color);
+}
