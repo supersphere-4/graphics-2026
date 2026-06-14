@@ -5,7 +5,7 @@
         "team_number": 1,
         "finished":0,
         "schedule": {
-            "run_order":[0, 12, 6, 8, 5, 3, 7, 4, 11, 9, 2, 10, 1],
+            "run_order":[1, 10, 11, 12, 3, 2, 7, 8, 4, 0, 5, 6, 9],
             "runs": [
 
                 {"name":"aldeezy1", "game": "Super Mario 64",
@@ -51,9 +51,9 @@
                 },
 
                 {"name":"Brando", "game": "Crash Bandicoot", 
-                 "submission_pb":"1:19:52"
-                
-                
+                 "submission_pb":"1:19:52",
+                 "final_pb":"1:18:51",
+                 "lp":37271
                 },
 
                 {"name":"Brando", "game": "Crash Bandicoot 2: Cortex Strikes Back",
@@ -64,13 +64,14 @@
 
                 {"name":"Dereklander", "game": "Crash Bandicoot: WARPED",
                  "submission_pb":"2:11:01",
-                 "final_pb":"2:09:57",
-                 "lp":28304
+                 "final_pb":"2:06:47",
+                 "lp":126500
                 },
 
                 {"name":"8va", "game": "Spyro the Dragon",
-                "submission_pb":"1:34:04"
-            
+                 "submission_pb":"1:34:04",
+                 "final_pb":"1:33:49",
+                 "lp":15046            
             
                 },
 
@@ -82,8 +83,8 @@
 
                 {"name":"Dactyly", "game": "Spyro: Year of the Dragon",
                  "submission_pb":"2:59:37",
-                 "final_pb":"2:58:25",
-                 "lp":47568
+                 "final_pb":"2:57:59",
+                 "lp":64040
                 }
             ]
         }
@@ -95,7 +96,7 @@
         "team_number": 2,
         "finished":0,
         "schedule": {
-            "run_order":[10, 8, 6, 5, 1, 3, 9, 11, 0, 2, 7, 12, 4],
+            "run_order":[0, 8, 2, 4, 1, 10, 9, 7, 12, 6, 3, 5, 11],
             "runs": [
                 {"name":"SheilaSlays", "game": "Super Mario 64",
                  "submission_pb":"2:07:48"
@@ -104,15 +105,16 @@
                 },
 
                 {"name":"BlauerKeks", "game": "Super Mario Sunshine",
-                 "submission_pb":"3:45:29"
-                
-                
+                 "submission_pb":"3:45:29",
+                 "final_pb":"3:37:41",
+                 "lp":67541
                 },
 
                 {"name":"SheilaSlays", "game": "Super Mario Galaxy",
                  "submission_pb":"6:09:12",
-                 "final_pb":"6:04:23",
-                 "lp":33769},
+                 "final_pb":"6:01:23",
+                 "lp":69547
+                },
 
                 {"name":"Galaxtic", "game": "Super Mario Galaxy 2",
                  "submission_pb":"8:58:06"
@@ -145,9 +147,9 @@
                 },
 
                 {"name":"Nuke_", "game": "Crash Bandicoot 2: Cortex Strikes Back",
-                 "submission_pb":"1:46:22"
-                
-                
+                 "submission_pb":"1:46:22",
+                 "final_pb":"1:38:36",
+                 "lp":72627
                 },
 
                 {"name":"Nuke_", "game": "Crash Bandicoot: WARPED",
@@ -156,7 +158,7 @@
             
                 },
 
-                {"name":"Tulin", "game": "Spyro the Dragon",
+                {"name":"Kay", "game": "Spyro the Dragon",
                  "submission_pb":"2:22:17"
                 
                 
@@ -192,8 +194,9 @@
                 },
 
                 {"name":"Ceddy", "game": "Super Mario Sunshine",
-                 "submission_pb":"3:10:47"
-                
+                 "submission_pb":"3:10:47",
+                 "final_pb":"3:07:59",
+                 "lp":53822
                 },
 
                 {"name":"PinShark", "game": "Super Mario Galaxy",
@@ -210,14 +213,14 @@
 
                 {"name":"ZingoChris", "game": "Banjo-Kazooie",
                  "submission_pb":"2:36:27",
-                 "final_pb":"2:26:46",
-                 "lp":137403
+                 "final_pb":"2:23:27",
+                 "lp":193136
                 },
 
                 {"name":"Znernicus", "game": "Banjo-Tooie",
                  "submission_pb":"5:18:13",
-                 "final_pb":"4:48:50",
-                 "lp":186130
+                 "final_pb":"4:43:37",
+                 "lp":237630
                 },
 
                 {"name":"Znernicus", "game": "Donkey Kong 64",
@@ -234,8 +237,8 @@
 
                 {"name":"C0dek", "game": "Crash Bandicoot 2: Cortex Strikes Back",
                  "submission_pb":"1:16:32",
-                 "final_pb":"1:14:54",
-                 "lp":55924
+                 "final_pb":"1:14:12",
+                 "lp":96915
                 },
 
                 {"name":"Bregermann", "game": "Crash Bandicoot: WARPED",
@@ -258,8 +261,8 @@
 
                 {"name":"Bregermann", "game": "Spyro: Year of the Dragon",
                  "submission_pb":"4:21:09", 
-                 "final_pb":"4:04:57", 
-                 "lp":93653
+                 "final_pb":"4:01:54", 
+                 "lp":125524
                 }
             ]
         }
@@ -303,9 +306,9 @@
                 },
 
                 {"name":"Linkarf", "game": "Banjo-Tooie",
-                 "submission_pb":"4:38:15"
-                
-                
+                 "submission_pb":"4:38:15",
+                 "final_pb":"4:31:53",
+                 "lp":82025
                 },
 
                 {"name":"zacharylawrence", "game": "Donkey Kong 64",
@@ -334,13 +337,15 @@
 
                 {"name":"Uroogla", "game": "Spyro the Dragon",
                  "submission_pb":"1:42:07",
-                 "final_pb":"1:41:51",
-                 "lp":13807},
+                 "final_pb":"1:41:16",
+                 "lp":42284
+                },
 
                 {"name":"Mentro", "game": "Spyro 2: Ripto's Rage!",
                  "submission_pb":"1:46:45",
-                 "final_pb":"1:38:11",
-                 "lp":262123},
+                 "final_pb":"1:37:57",
+                 "lp":178377
+                },
 
                 {"name":"Uroogla", "game": "Spyro: Year of the Dragon",
                  "submission_pb":"3:42:42",
@@ -360,9 +365,9 @@
             "run_order":[7, 6, 12, 2, 3, 5, 8, 10, 4, 0, 11, 1, 9],
             "runs": [
                 {"name":"Nostalgia64", "game": "Super Mario 64",
-                 "submission_pb":"2:41:51"
-        
-        
+                 "submission_pb":"2:41:51",
+                 "final_pb":"2:33:38",
+                 "lp":43843
                 },
 
                 {"name":"Odme_", "game": "Super Mario Sunshine",
@@ -385,14 +390,14 @@
 
                 {"name":"CandyBoots", "game": "Banjo-Kazooie",
                  "submission_pb":"2:24:51",
-                 "final_pb":"2:24:50",
-                 "lp":10181
+                 "final_pb":"2:22:50",
+                 "lp":42519
                 },
 
                 {"name":"QueenSnopea", "game": "Banjo-Tooie",
                  "submission_pb":"4:44:48",
-                 "final_pb":"4:44:37",
-                 "lp":11498
+                 "final_pb":"4:38:47",
+                 "lp":71817
                 },
 
                 {"name":"CandyBoots", "game": "Donkey Kong 64",
@@ -408,9 +413,9 @@
                 },
 
                 {"name":"Joey", "game": "Crash Bandicoot 2: Cortex Strikes Back",
-                 "submission_pb":"1:30:16"
-                
-                
+                 "submission_pb":"1:30:16",
+                 "final_pb":"1:25:37",
+                 "lp":100368
                 },
 
                 {"name":"Anti", "game": "Crash Bandicoot: WARPED",
@@ -427,8 +432,8 @@
 
                 {"name":"Katsu", "game": "Spyro 2: Ripto's Rage!",
                  "submission_pb":"1:52:19",
-                 "final_pb":"1:39:35",
-                 "lp":349849
+                 "final_pb":"1:38:32",
+                 "lp":376829
                 },
 
                 {"name":"Katsu", "game": "Spyro: Year of the Dragon",
@@ -446,7 +451,7 @@
         "team_number": 6,
         "finished":0,
         "schedule": {
-            "run_order":[0, 6, 12, 3, 10, 8, 4, 11, 9, 5, 7, 1, 2],
+            "run_order":[0, 7, 11, 9, 5, 3, 10, 4, 8, 6, 12, 1, 2],
             "runs": [
                 {"name":"Zans64", "game": "Super Mario 64",
                  "submission_pb":"2:03:20"
@@ -473,9 +478,9 @@
                 },
 
                 {"name":"GoodGrieth", "game": "Banjo-Kazooie",
-                 "submission_pb":"2:19:29"
-                
-                
+                 "submission_pb":"2:19:29",
+                 "final_pb":"2:16:40",
+                 "lp":27230
                 },
 
                 {"name":"SecretHumorMan", "game": "Banjo-Tooie",
@@ -491,15 +496,15 @@
                 },
 
                 {"name":"voridak", "game": "Crash Bandicoot",
-                 "submission_pb":"1:21:39"
-                
-                
+                 "submission_pb":"1:21:39",
+                 "final_pb":"1:20:25",
+                 "lp":29692
                 },
 
                 {"name":"notvanni", "game": "Crash Bandicoot 2: Cortex Strikes Back",
-                 "submission_pb":"1:14:18"
-                
-                
+                 "submission_pb":"1:14:18",
+                 "final_pb":"1:13:58",
+                 "lp":30231
                 },
 
                 {"name":"voridak", "game": "Crash Bandicoot: WARPED",
@@ -585,9 +590,9 @@
                 },
 
                 {"name":"NightShadow295", "game": "Crash Bandicoot 2: Cortex Strikes Back",
-                 "submission_pb":"1:39:14"
-                
-                
+                 "submission_pb":"1:39:14",
+                 "final_pb":"1:36:14",
+                 "lp":49295
                 },
 
                 {"name":"EvolvesZ", "game": "Crash Bandicoot: WARPED",
@@ -610,8 +615,8 @@
 
                 {"name":"Mikey (PGSK)", "game": "Spyro: Year of the Dragon",
                  "submission_pb":"3:43:21",
-                 "final_pb":"3:43:07",
-                 "lp":11315
+                 "final_pb":"3:30:46",
+                 "lp":140236
                 }
             ]
         }
@@ -623,9 +628,14 @@
         "team_number": 8,
         "finished":0,
         "schedule": {
-            "run_order":[11, 5, 8, 6, 4, 9, 12, 2, 0, 7, 3, 10, 1],
+            "run_order":[8, 7, 3, 11, 9, 4, 0, 12, 2, 6, 5, 1, 10],
             "runs": [
-                {"name":"Cheesy", "game": "Super Mario 64"},
+                {"name":"Cheesy", "game": "Super Mario 64",
+                 "submission_pb":"1:59:17"
+            
+            
+                },
+
                 {"name":"jukatox", "game": "Super Mario Sunshine",
                  "submission_pb":"3:12:01",
                  "final_pb":"3:10:10",
@@ -645,15 +655,15 @@
                 },
 
                 {"name":"kezisthename", "game": "Banjo-Kazooie",
-                 "submission_pb":"2:54:14"
-                
-                
+                 "submission_pb":"2:54:14",
+                 "final_pb":"2:48:42",
+                 "lp":40065
                 },
 
                 {"name":"CornCobx0", "game": "Banjo-Tooie",
                  "submission_pb":"5:30:35",
-                 "final_pb":"5:15:32",
-                 "lp":85636
+                 "final_pb":"5:08:03",
+                 "lp":134440
                 },
 
                 {"name":"MrTKettle", "game": "Donkey Kong 64",
@@ -693,9 +703,9 @@
                 },
 
                 {"name":"Rui", "game": "Spyro: Year of the Dragon",
-                 "submission_pb":"3:44:35"
-                
-                
+                 "submission_pb":"3:44:35",
+                 "final_pb":"3:34:17",
+                 "lp":17228
                 }
             ]
         }

@@ -20,6 +20,7 @@
     {"team":"Grape Apes", "name":"Tulin", "twitch":"mousy_mika", "pronouns":"They/Them"},
     {"team":"Grape Apes", "name":"Auphonium", "twitch":"", "pronouns":"She/Her"},
     {"team":"Grape Apes", "name":"UniVin", "twitch":"", "pronouns":""},
+    {"team":"Grape Apes", "name":"Kay", "twitch":"hyliankay", "pronouns":"She/Her"},
 
     {"team":"Silly Willies", "name":"SuperViperT302", "twitch":"", "pronouns":"He/Him"},
     {"team":"Silly Willies", "name":"Znernicus", "twitch":"", "pronouns":"He/Him"},
@@ -41,6 +42,7 @@
     {"team":"Peach and Co. Law Offices", "name":"Linkarf", "twitch":"", "pronouns":"He/Him"},
     {"team":"Peach and Co. Law Offices", "name":"zacharylawrence", "twitch":"", "pronouns":""},
     {"team":"Peach and Co. Law Offices", "name":"Mentro", "twitch":"Mentro00", "pronouns":"He/Him"},
+    {"team":"Peach and Co. Law Offices", "name":"hardcoregaming", "twitch":"hardcoregam1ng", "pronouns":"He/Him"},
 
     {"team":"Mintally Insane", "name":"Odme_", "twitch":"", "pronouns":"He/Him"},
     {"team":"Mintally Insane", "name":"CandyBoots", "twitch": "Candy_Boots", "pronouns":""},
@@ -75,7 +77,7 @@
 
     {"team":"Gaslight Gatekeep Girlboss", "name":"MrTKettle", "twitch":"", "pronouns":""},
     {"team":"Gaslight Gatekeep Girlboss", "name":"Aether", "twitch":"ChaoticAether", "pronouns":"He/Him"},
-    {"team":"Gaslight Gatekeep Girlboss", "name": "Aidan", "twitch":"Koolaidanman1", "pronouns":"He/Him"},
+    {"team":"Gaslight Gatekeep Girlboss", "name": "Aidan", "twitch":"Koolaidan1", "pronouns":"He/Him"},
     {"team":"Gaslight Gatekeep Girlboss", "name":"Cheesy", "twitch":"CheesySRC", "pronouns":"He/Him"},
     {"team":"Gaslight Gatekeep Girlboss", "name":"jukatox", "twitch":"", "pronouns":"She/Her"},
     {"team":"Gaslight Gatekeep Girlboss", "name":"Tibs", "twitch":"Tibs1", "pronouns":"He/They"},
