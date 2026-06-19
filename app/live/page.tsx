@@ -3,33 +3,36 @@ import Image from "next/image";
 import TwitchEmbed from "./TwitchEmbed";
 import MainTwitchEmbed from "./MainTwitchEmbed"
 import MainTeamBanner from "./MainTeamBanner";
+import {useIntervalAdvanced} from "./UseIntervalAdvanced"
 import TeamBanner from "./TeamBanner"
 import Teams from "./data/teams_new.json"
 import Games from "./data/games.json"
-import { Suspense, useEffect, useState } from 'react'
+import { Suspense, useState } from 'react'
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { useSearchParams, useRouter } from 'next/navigation'
 
 export default function Live() {
 
     const params = useSearchParams();
-    console.log("search params: " + params.get("main"))
     const main = Number(params.get("main"))
     const main_team = Teams.find((team) => team.team_number == main)
     const [currRuns, setCurrRuns] = useState(params.getAll("currRuns").map((e) => Number(e)));
+    const [teamStatus, setTeamStatus] = useState(new Array(8).fill('in progress'))
     const sub_streams = Teams.map((team) => {
         return (<TwitchEmbed team={team}
                              main={main}
-                             currRun={team.schedule.run_order[currRuns[team.team_number - 1] - 1]} 
-                             key={`team-${team.team_number}-mini`}/>
+                             currRun={team.schedule.run_order[currRuns[team.team_number - 1] - 1] | team.schedule.run_order[-1]} 
+                             key={`team-${team.team_number}-mini`}
+                             finished={isTeamFinished(team.team_number)}/>
         )
     })
 
     const banners = Teams.map((team) =>{
             return <TeamBanner main={main}
                         team={team} 
-                        currRun={team.schedule.run_order[currRuns[team.team_number - 1] - 1]} 
+                        currRun={team.schedule.run_order[currRuns[team.team_number - 1] - 1] | team.schedule.run_order[-1]} 
                         key={`team-${team.team_number}-banner`}
+                        finished={isTeamFinished(team.team_number)}
                         />
     })
 
@@ -37,35 +40,58 @@ export default function Live() {
     const rate = 7.5; // The rate at which streams rotate in minutes, and the rate at which info in the main team banner rotates in seconds.
     const [time, setTime] = useState(main);
     const [info, setInfo] = useState(0);
-    useEffect(() => {
-        const interval = setInterval(() => {
+
+    useIntervalAdvanced(() => {
             setTime(prevTime => prevTime + 1);
-            let newQuery = '/live?main=' + ((time % 8) + 1) + currRuns.map((e) => '&currRuns=' + e);
+            let newMain = time % 8 + 1;
+            let i = 0;
+            while (isTeamFinished(newMain)) {
+                setTime(prevTime => prevTime + 1);
+                newMain = newMain++ % 8 + 1;
+                i++;
+            }
+            i = 0;
+            let newQuery = '/live?main=' + newMain + currRuns.map((e) => '&currRuns=' + e);
             newQuery = newQuery.replaceAll(',','')
             router.replace(newQuery)
             console.log("Time: " + time)
-        }, 1000 * 60 * rate);
+            }, {delay: rate * 1000 * 60, enabled: teamStatus.filter((status) => status !== 'finished').length > 1})
 
-        return () => {
-            clearInterval(interval);
-        };
-    }, [time])
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setInfo(prevTime => prevTime + 1);
-        }, 1000 * rate);
-
-        return () => {
-            clearInterval(interval);
-        };
-    }, [time])
+    useIntervalAdvanced(() => {setInfo(prevTime => prevTime + 1)}, {delay: rate * 1000})
 
     function handleSwitchRuns(team : any, index : number) {
-        console.log("Team: " + team.team_name)
-        console.log("Current Run: " + Games[team.schedule.run_order[index]][0])
-        console.log("Runner:" +  team.schedule.runs[index].name)
-        setCurrRuns(currRuns.with(team.team_number - 1, index + 1))
+        if (index == 12) {
+            console.log("Team: " + team.team_name)
+            console.log("LAST RUN!")
+            console.log("Closing Run: " + Games[team.schedule.run_order[12]][0])
+            console.log("Closing Runner: " +  team.schedule.runs[12].name)
+            setTeamStatus(teamStatus.with(team.team_number - 1, 'last run'))
+            setCurrRuns(currRuns.with(team.team_number - 1, index + 1))
+        } else if (index < 13) {
+            console.log("Team: " + team.team_name)
+            console.log("Current Run: " + Games[team.schedule.run_order[index]][0])
+            console.log("Runner:" +  team.schedule.runs[index].name)
+            setCurrRuns(currRuns.with(team.team_number - 1, index + 1))
+            setTeamStatus(teamStatus.with(team.team_number - 1, 'in progress'))
+        } else {
+            console.log("Team: " + team.team_name)
+            console.log("FINISHED!")
+            console.log("Closing Run: " + Games[team.schedule.run_order[12]][0])
+            console.log("Closing Runner: " +  team.schedule.runs[12].name)
+            setTeamStatus(teamStatus.with(team.team_number - 1, 'finished'))
+        }
+
+    }
+
+    function isTeamFinished(team_number : number) {
+        return teamStatus[team_number - 1] === 'finished';
+    }
+
+    function refreshStream(team : any) {
+        let stream = document.getElementById(`${team.team_color}-stream`) as HTMLIFrameElement;
+        if (stream) {
+            stream.src = stream.src;
+        }
     }
 
     const team_control = Teams.map((team) => {
@@ -76,17 +102,28 @@ export default function Live() {
         games = games.toSorted((a, b) => run_order.indexOf(Number(a[2])) - run_order.indexOf(Number(b[2])))
         return (
             <Col className={`flex flex-wrap items-center justify-center border ${team.team_color}`}>
-                {games.map((game) => 
-                <Button className="team-control m-8" onClick={(e) => handleSwitchRuns(team, run_order.indexOf(Number(game[2])))} key={`${team.team_color}-button-${game[2]}`}>
-                    <Image className={run_order_slice.includes(Number(game[2])) ? 'running' : 'not-running'}
-                        src={`/logos/${game[1]}.png`}
-                        alt={`${game[0]} logo`}
-                        id={`${game[1]}`}
-                        width={300} height={300}
-                        key={`logo-${game[1]}`}
-                    />
+                {games.map 
+                    ((game) => 
+                        <Button className="team-control m-8"
+                                disabled={isTeamFinished(team.team_number)}
+                                onClick={(e) => handleSwitchRuns(team, run_order.indexOf(Number(game[2])))}
+                                key={`${team.team_color}-button-${game[2]}`}>
+                            <Image className={run_order_slice.includes(Number(game[2])) ? 'running' : 'not-running'}
+                                src={`/logos/${game[1]}.png`}
+                                alt={`${game[0]} logo`}
+                                id={`${game[1]}`}
+                                width={300} height={300}
+                                key={`logo-${game[1]}`}
+                            />
+                        </Button>
+                    )
+                }
+                <Button className={`team-control border-8 m-8 px-8 finish-button ${team.team_color}`} disabled={teamStatus[team.team_number - 1] !== 'last run'} onClick={(e) => {handleSwitchRuns(team, 13); console.log(teamStatus)}} >
+                    {teamStatus[team.team_number - 1] === 'finished' ? "FINISHED!" : `GAME ${currRuns[team.team_number - 1]}`}
                 </Button>
-                )}
+                <Button className={`team-control border-8 m-8 px-8 refresh-button ${team.team_color}`} disabled={teamStatus[team.team_number - 1] === 'finished'} onClick={(e) => {refreshStream(team)}} >
+                    Refresh
+                </Button>
             </Col>
             
         )})

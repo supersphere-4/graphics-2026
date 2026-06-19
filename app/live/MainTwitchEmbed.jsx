@@ -13,7 +13,7 @@ const MainTwitchEmbed = ({ main, currRun}) => {
     }
 
     return (
-        <iframe src={src} width={width} height={height} />
+        <iframe src={src} width={width} height={height} id={`${main.team_color}-stream`}/>
     )
 };
 

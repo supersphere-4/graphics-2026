@@ -2,7 +2,7 @@ import {Col, Row} from "react-bootstrap";
 import Image from "next/image";
 import RunnerInfo from "./data/runnerinfo_new.json"
 
-const TwitchEmbed = ({team, main, currRun}) => {
+const TwitchEmbed = ({team, main, currRun, finished}) => {
 
         const teamEmotePaths = [
             '/logos/team_emotes/rusty_bucket_babes.png',
@@ -27,7 +27,7 @@ const TwitchEmbed = ({team, main, currRun}) => {
         if (twitch) {
             src = "https://player.twitch.tv/?channel=" + twitch + "&parent=localhost&autoplay=true&muted=true";
         }
-        if (team.team_number == main) {
+        if (team.team_number == main | finished) {
             return (
                     <Col className={`border-8 flex ${team.team_color} team-placeholder`} key={team.team_name}>
                         <Image className={`${team.team_color}`} 
@@ -40,7 +40,7 @@ const TwitchEmbed = ({team, main, currRun}) => {
         )}
         return (
                 <Col className={`border-8 flex ${team.team_color} team-sub-stream`} key={team.team_name}>
-                    <iframe src={src} width={width} height={height}/>
+                    <iframe src={src} width={width} height={height} id={`${team.team_color}-stream`}/>
                 </Col>
         )
 };

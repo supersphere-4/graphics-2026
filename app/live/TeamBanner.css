@@ -148,3 +148,7 @@ div.container:hover {
 .side-banner:not(.main):hover {
     background-color: revert;
 }
+
+.finished {
+    pointer-events: none;
+}
