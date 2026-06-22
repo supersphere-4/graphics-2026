@@ -18,6 +18,9 @@ export default function Live() {
     const main_team = Teams.find((team) => team.team_number == main)
     const [currRuns, setCurrRuns] = useState(params.getAll("currRuns").map((e) => Number(e)));
     const [teamStatus, setTeamStatus] = useState(new Array(8).fill('in progress'))
+    const [numTeamsFinished, setNumTeamsFinished] = useState(0);
+
+    // Code for displaying the small Twitch embeds below the main stream.
     const sub_streams = Teams.map((team) => {
         return (<TwitchEmbed team={team}
                              main={main}
@@ -26,7 +29,7 @@ export default function Live() {
                              finished={isTeamFinished(team.team_number)}/>
         )
     })
-
+    // Code for displaying the team banners on the left side.
     const banners = Teams.map((team) =>{
             return <TeamBanner main={main}
                         team={team} 
@@ -37,28 +40,11 @@ export default function Live() {
     })
 
     const router = useRouter()
-    const rate = 7.5; // The rate at which streams rotate in minutes, and the rate at which info in the main team banner rotates in seconds.
+    const rate = 7.5; // The rate at which streams rotate in minutes, and the rate at which info in the main team's side panel rotates in seconds.
     const [time, setTime] = useState(main);
     const [info, setInfo] = useState(0);
 
-    useIntervalAdvanced(() => {
-            setTime(prevTime => prevTime + 1);
-            let newMain = time % 8 + 1;
-            let i = 0;
-            while (isTeamFinished(newMain)) {
-                setTime(prevTime => prevTime + 1);
-                newMain = newMain++ % 8 + 1;
-                i++;
-            }
-            i = 0;
-            let newQuery = '/live?main=' + newMain + currRuns.map((e) => '&currRuns=' + e);
-            newQuery = newQuery.replaceAll(',','')
-            router.replace(newQuery)
-            console.log("Time: " + time)
-            }, {delay: rate * 1000 * 60, enabled: teamStatus.filter((status) => status !== 'finished').length > 1})
-
-    useIntervalAdvanced(() => {setInfo(prevTime => prevTime + 1)}, {delay: rate * 1000})
-
+    // Code for handling whether the given team is on their last run, finished, or simply in progress.
     function handleSwitchRuns(team : any, index : number) {
         if (index == 12) {
             console.log("Team: " + team.team_name)
@@ -83,10 +69,49 @@ export default function Live() {
 
     }
 
+    // The default timer for switching streams. Disabled after a manual switch or when there is only one team remaining.
+    useIntervalAdvanced(() => {
+        setTime(prevTime => prevTime + 1);
+        let newMain = time % 8 + 1;
+        let i = 0;
+        while (isTeamFinished(newMain)) {
+            setTime(prevTime => prevTime + 1);
+            newMain = newMain++ % 8 + 1;
+            i++;
+        }
+        i = 0;
+        let newQuery = '/live?main=' + newMain + currRuns.map((e) => '&currRuns=' + e);
+        newQuery = newQuery.replaceAll(',','')
+        router.replace(newQuery)
+        console.log("Time: " + time)
+        }, {delay: rate * 1000 * 60, enabled: teamStatus.filter((status) => status !== 'finished').length > 1 && !params.get("timer")})
+
+    // The alternate timer for switching streams. Enabled after a manual switch. The main stream takes twice as long to cycle than the default timer.
+    useIntervalAdvanced(() => {
+        setTime(prevTime => prevTime + 1);
+        let newMain = time % 8 + 1;
+        let i = 0;
+        while (isTeamFinished(newMain)) {
+            setTime(prevTime => prevTime + 1);
+            newMain = newMain++ % 8 + 1;
+            i++;
+        }
+        i = 0;
+        let newQuery = '/live?main=' + newMain + currRuns.map((e) => '&currRuns=' + e);
+        newQuery = newQuery.replaceAll(',','')
+        router.replace(newQuery)
+        console.log("Time: " + time)
+        }, {delay: rate * 2 * 1000 * 60, enabled: teamStatus.filter((status) => status !== 'finished').length > 1 && params.get("timer")})
+    
+    // The timer for cycling between info on the side panel.
+    useIntervalAdvanced(() => {setInfo(prevTime => prevTime + 1)}, {delay: rate * 1000})
+    
+    // Checks if the given team has finished.
     function isTeamFinished(team_number : number) {
         return teamStatus[team_number - 1] === 'finished';
     }
 
+    // Code for refreshing the given team's Twitch embed.
     function refreshStream(team : any) {
         let stream = document.getElementById(`${team.team_color}-stream`) as HTMLIFrameElement;
         if (stream) {
@@ -94,6 +119,7 @@ export default function Live() {
         }
     }
 
+    // Code for handing switching between each team's respective runs.
     const team_control = Teams.map((team) => {
 
         const run_order = team.schedule.run_order;

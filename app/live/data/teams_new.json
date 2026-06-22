@@ -185,7 +185,7 @@
         "team_number": 3,
         "finished":0,
         "schedule": {
-            "run_order":[7, 6, 12, 2, 3, 5, 8, 10, 4, 0, 11, 1, 9],
+            "run_order":[8, 6, 12, 2, 3, 5, 7, 10, 4, 0, 11, 1, 9],
             "runs": [
                 {"name":"SayHarry", "game": "Super Mario 64",
                  "submission_pb":"2:12:37"
@@ -539,7 +539,7 @@
         "team_number": 7,
         "finished":0,
         "schedule": {
-            "run_order":[4, 5, 9, 6, 8, 12, 1, 2, 0, 7, 3, 10, 11],
+            "run_order":[8, 0, 10, 2, 7, 9, 3, 5, 11, 12, 1, 6, 4],
             "runs": [
                 {"name":"Druz", "game": "Super Mario 64",
                  "submission_pb":"1:46:57",

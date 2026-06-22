@@ -2,6 +2,7 @@ import {Col, Row} from "react-bootstrap";
 import Image from "next/image";
 import RunnerInfo from "./data/runnerinfo_new.json"
 
+// Displays the given team's small Twitch embed, or the team's emote in its place if the team is currently on the main stream.
 const TwitchEmbed = ({team, main, currRun, finished}) => {
 
         const teamEmotePaths = [

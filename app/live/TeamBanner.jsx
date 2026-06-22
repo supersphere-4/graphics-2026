@@ -4,18 +4,24 @@ import {Container, Row, Col} from "react-bootstrap"
 import Image from "next/image"
 import Link from "next/link"
 import "./TeamBanner.css"
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import {useSearchParams} from "next/navigation"
 
+// Renders the given team's banner on the left side, displaying the team name, 
+// current runner, pronouns (if given), the current game logo, and the team's emote as the background.
 const TeamBanner = ({team, currRun, main, finished}) => {
-        const url = new URLSearchParams()
-        const router = useRouter();
+        
         const searchParams = useSearchParams();
-        console.log("Params: " + searchParams)
+        let url = new URLSearchParams(searchParams)
+        if (!url.get('timer')) {
+            url.append('timer', 'paused')
+        }
+        url.set('main', team.team_number);
         const name = team.schedule.runs[currRun].name;
         const pronouns = RunnerInfo.find((runner) => runner.name == name).pronouns;
+        
         if (finished) {
             return (
-                <Link href={{pathname: '/live', query: {...router.query, main: team.team_number}}} className="finished" shallow replace>
+                <Link href={{pathname: '/live', query: url.toString()}} className="finished" shallow replace>
                     <Container className="flex">
                         <Row className={`${team.team_number === main ? "main": ""} p-2 side-banner ${team.team_color}-banner`}
                             key={team.team_name}>
@@ -40,7 +46,7 @@ const TeamBanner = ({team, currRun, main, finished}) => {
 
         }
         return (
-            <Link href={`/live?main=${team.team_number}`}>
+            <Link href={{pathname: '/live', query: url.toString()}} shallow replace>
                 <Container className="flex">
                     <Row className={`${team.team_number === main ? "main": ""} p-2 side-banner ${team.team_color}-banner`}
                         key={team.team_name}>

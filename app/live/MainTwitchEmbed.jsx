@@ -1,6 +1,7 @@
 import RunnerInfo from "./data/runnerinfo_new.json"
 
-const MainTwitchEmbed = ({ main, currRun}) => {
+// The main team's Twitch Embed, occupying the top center of the viewport.
+const MainTwitchEmbed = ({main, currRun}) => {
 
     const name = main.schedule.runs[currRun].name;
     const scale = 5.;

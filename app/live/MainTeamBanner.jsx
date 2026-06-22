@@ -4,19 +4,18 @@ import {Container, Row, Col} from "react-bootstrap"
 import Image from "next/image"
 import "./MainTeamBanner.css"
 
+// Displays the side panel to the right of the main stream.
+// Contains the team's name, current runner, and either:
+// Personal Best, if the runner's PB hasn't changed since submissions
+// Submission PB, Current PB, League Points, if the runner's PB has changed since submissions
 const MainTeamBanner = ({main, currRun, runsCompleted, info}) => {
 
         const name = main.schedule.runs[currRun].name;
         const run_order = main.schedule.run_order.slice(0, runsCompleted);
-
-        let pronouns = RunnerInfo.find((runner) => runner.name == name).pronouns;
-        if (pronouns === "") {
-            pronouns = "None"
-        }
         const pb = main.schedule.runs[currRun].submission_pb;
         const final_pb = (main.schedule.runs[currRun].final_pb);
         const lp = (main.schedule.runs[currRun].lp);
-        const run_info = (final_pb ? ["Submission PB: " + pb,"Final PB: " + final_pb,"League Points: " + lp][info % 3] : "PB: " + pb)
+        const run_info = (final_pb ? ["Submission PB: " + pb,"Current PB: " + final_pb,"League Points: " + lp][info % 3] : "PB: " + pb)
 
         let width;
         const gamesCompleted = Games.map((game) => {

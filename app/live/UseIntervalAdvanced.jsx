@@ -1,5 +1,7 @@
 // code from https://react.wiki/hooks/custom-use-interval/
 import { useRef, useEffect } from "react";
+
+// Handles timers for switching streams and info in the side panel on the right.
 export function useIntervalAdvanced(callback, options) {
   const {
     delay = 1000,
