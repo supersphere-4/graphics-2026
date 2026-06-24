@@ -39,13 +39,13 @@ body::-webkit-scrollbar {
 .page-feed {
   --bs-gutter-x: 0;
   background: #000;
-  height: 2160px;
+  height: 3280px;
   margin: 0;
   max-width: none;
   overflow: visible;
   padding: 0;
   position: relative;
-  width: 7088px;
+  width: 3840px;
 }
 
 .background-loop {
@@ -386,37 +386,38 @@ Link .front-page {
 .team-controls {
   background: #050505;
   display: grid;
-  gap: 18px;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
-  height: 2160px;
-  left: 3840px;
+  gap: 10px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 86px repeat(8, 104px);
+  height: 1120px;
+  left: 0;
   margin: 0;
   overflow: hidden;
   padding: 24px;
   position: absolute;
-  top: 0;
-  width: 3248px;
+  top: 2160px;
+  width: 3840px;
   z-index: 1;
 }
 
 .team-controls > .col {
-  align-content: start;
+  align-items: center;
   display: grid !important;
   gap: 10px;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  justify-content: stretch;
+  grid-template-columns: repeat(13, 86px) repeat(3, 140px);
+  grid-template-rows: 86px;
+  justify-content: start;
   margin: 0;
   max-width: none;
   min-width: 0;
   overflow: hidden;
-  padding: 12px;
+  padding: 8px 12px;
 }
 
 .twitch-login-controls {
   align-items: center;
   display: flex;
   gap: 16px;
-  grid-column: 1 / -1;
   justify-content: flex-start;
   min-width: 0;
 }
@@ -451,7 +452,7 @@ Link .front-page {
   margin: 0 !important;
   min-width: 0;
   padding: 4px !important;
-  width: 100%;
+  width: 86px;
 }
 
 .team-controls .team-control img {
@@ -468,10 +469,10 @@ Link .front-page {
   font-size: 24px;
   height: 86px;
   line-height: 1;
-  width: 100%;
+  width: 140px;
 }
 
 .team-controls .finish-button,
 .team-controls .refresh-button {
-  grid-column: span 2;
+  grid-column: auto;
 }
