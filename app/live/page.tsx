@@ -20,6 +20,41 @@ function LiveContent() {
     const [currRuns, setCurrRuns] = useState(initialRuns.length === Teams.length ? initialRuns : new Array(Teams.length).fill(1));
     const [teamStatus, setTeamStatus] = useState(new Array(8).fill('in progress'))
     const [numTeamsFinished, setNumTeamsFinished] = useState(0);
+    const [now, setNow] = useState(0);
+    const [runStartTimes, setRunStartTimes] = useState(new Array(Teams.length).fill(0));
+
+    function parseRunTimeToSeconds(time : string | undefined) {
+        if (!time) return 0;
+
+        const cleanTime = time.trim().replace(/[^\d:.]/g, "");
+        if (!cleanTime) return 0;
+
+        const parts = cleanTime.split(":").map((part) => Number(part));
+        if (parts.some((part) => Number.isNaN(part))) return 0;
+
+        return parts.reduce((total, part) => total * 60 + part, 0);
+    }
+
+    function getSelectedRun(team : any) {
+        return team.schedule.run_order[currRuns[team.team_number - 1] - 1] ?? team.schedule.run_order[0];
+    }
+
+    function getTeamProgressPercent(team : any) {
+        if (isTeamFinished(team.team_number)) return 100;
+
+        const run = team.schedule.runs[getSelectedRun(team)];
+        const targetSeconds = parseRunTimeToSeconds(run?.final_pb ?? run?.submission_pb);
+        const startTime = runStartTimes[team.team_number - 1];
+        if (!now || !startTime || !targetSeconds) return 0;
+
+        return Math.min(100, Math.max(0, ((now - startTime) / 1000 / targetSeconds) * 100));
+    }
+
+    function restartTeamProgress(team : any) {
+        const currentTime = Date.now();
+        setNow(currentTime);
+        setRunStartTimes((prevStarts) => prevStarts.with(team.team_number - 1, currentTime));
+    }
 
     // Code for displaying the small Twitch embeds below the main stream.
     const sub_streams = Teams.map((team) => {
@@ -37,6 +72,7 @@ function LiveContent() {
                         currRun={team.schedule.run_order[currRuns[team.team_number - 1] - 1] | team.schedule.run_order[-1]} 
                         key={`team-${team.team_number}-banner`}
                         finished={isTeamFinished(team.team_number)}
+                        progressPercent={getTeamProgressPercent(team)}
                         />
     })
 
@@ -54,12 +90,14 @@ function LiveContent() {
             console.log("Closing Runner: " +  team.schedule.runs[12].name)
             setTeamStatus(teamStatus.with(team.team_number - 1, 'last run'))
             setCurrRuns(currRuns.with(team.team_number - 1, index + 1))
+            restartTeamProgress(team)
         } else if (index < 13) {
             console.log("Team: " + team.team_name)
             console.log("Current Run: " + Games[team.schedule.run_order[index]][0])
             console.log("Runner:" +  team.schedule.runs[index].name)
             setCurrRuns(currRuns.with(team.team_number - 1, index + 1))
             setTeamStatus(teamStatus.with(team.team_number - 1, 'in progress'))
+            restartTeamProgress(team)
         } else {
             console.log("Team: " + team.team_name)
             console.log("FINISHED!")
@@ -106,6 +144,15 @@ function LiveContent() {
     
     // The timer for cycling between info on the side panel.
     useIntervalAdvanced(() => {setInfo(prevTime => prevTime + 1)}, {delay: rate * 1000})
+
+    // Keeps banner progress bars moving and initializes their clock when the page loads.
+    useIntervalAdvanced(() => {
+        const currentTime = Date.now();
+        setNow(currentTime);
+        setRunStartTimes((prevStarts) => (
+            prevStarts.every((start) => start) ? prevStarts : prevStarts.map((start) => start || currentTime)
+        ));
+    }, {delay: 1000, fireOnMount: true})
     
     // Checks if the given team has finished.
     function isTeamFinished(team_number : number) {
@@ -116,6 +163,7 @@ function LiveContent() {
     function undoFinishTeam(team : any) {
         setTeamStatus(teamStatus.with(team.team_number - 1, 'last run'))
         setCurrRuns(currRuns.with(team.team_number - 1, team.schedule.run_order.length))
+        restartTeamProgress(team)
     }
 
     // Code for refreshing the given team's Twitch embed.
@@ -124,6 +172,20 @@ function LiveContent() {
         if (stream) {
             stream.src = stream.src;
         }
+    }
+
+    // Opens Twitch as a top-level page so Twitch can set login/Turbo cookies for this browser profile.
+    function openTwitchLogin() {
+        const loginWindow = window.open("https://www.twitch.tv/login", "twitch-login", "popup,width=1100,height=800");
+        loginWindow?.focus();
+    }
+
+    // Refreshes every Twitch iframe after logging into Twitch in the popup.
+    function refreshTwitchEmbeds() {
+        document.querySelectorAll("iframe[id$='-stream']").forEach((stream) => {
+            const iframe = stream as HTMLIFrameElement;
+            iframe.src = iframe.src;
+        })
     }
 
     // Code for handing switching between each team's respective runs.
@@ -191,6 +253,14 @@ function LiveContent() {
                 </section>
             </div>
             <Row className="team-controls">
+                <div className="twitch-login-controls">
+                    <Button className="twitch-login-button" onClick={openTwitchLogin}>
+                        Log in to Twitch
+                    </Button>
+                    <Button className="twitch-refresh-button" onClick={refreshTwitchEmbeds}>
+                        Refresh Twitch Embeds
+                    </Button>
+                </div>
                 {team_control}
             </Row>
         </Container>

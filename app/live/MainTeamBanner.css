@@ -30,28 +30,26 @@
     overflow: hidden;
     padding: 0;
     text-align: left;
-    text-overflow: ellipsis;
+    text-overflow: clip;
     text-shadow: none;
     white-space: nowrap;
+    min-width: 0;
 }
 
 .main-text .team-name {
     font-family: 'Encode Sans', Helvetica, sans-serif;
-    font-size: 32px;
     font-weight: 1000;
-    flex: 0 1 auto;
+    flex: 1.45 1 0;
 }
 
 .main-text .runner-name {
-    font-size: 24px;
     font-weight: 800;
-    flex: 0 1 auto;
+    flex: 0.95 1 0;
 }
 
 .main-text .runner-info {
-    font-size: 20px;
     font-weight: 800;
-    flex: 1 1 auto;
+    flex: 1.05 1 0;
 }
 
 .main-games-strip {

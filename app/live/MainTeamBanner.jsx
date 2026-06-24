@@ -1,7 +1,57 @@
+"use client"
+
 import Games from "./data/games.json"
 import {Container} from "react-bootstrap"
 import Image from "next/image"
 import "./MainTeamBanner.css"
+import {useCallback, useLayoutEffect, useRef, useState} from "react"
+
+const AutoFitText = ({children, className, maxSize, minSize = 14}) => {
+        const textRef = useRef(null);
+        const [fontSize, setFontSize] = useState(maxSize);
+
+        const fitText = useCallback(() => {
+                const text = textRef.current;
+                if (!text) return;
+
+                let low = minSize;
+                let high = maxSize;
+                let best = minSize;
+
+                while (low <= high) {
+                        const nextSize = Math.floor((low + high) / 2);
+                        text.style.fontSize = `${nextSize}px`;
+
+                        if (text.scrollWidth <= text.clientWidth) {
+                                best = nextSize;
+                                low = nextSize + 1;
+                        } else {
+                                high = nextSize - 1;
+                        }
+                }
+
+                text.style.fontSize = `${best}px`;
+                setFontSize(best);
+        }, [maxSize, minSize]);
+
+        useLayoutEffect(() => {
+                fitText();
+
+                const text = textRef.current;
+                if (!text) return;
+
+                const observer = new ResizeObserver(fitText);
+                observer.observe(text);
+
+                return () => observer.disconnect();
+        }, [children, fitText]);
+
+        return (
+                <p className={className} ref={textRef} style={{fontSize}}>
+                        {children}
+                </p>
+        )
+}
 
 // Displays the lower banner for the main team.
 // Contains the team's name, current runner, and either:
@@ -32,9 +82,9 @@ const MainTeamBanner = ({main, currRun, runsCompleted, info}) => {
                      key={main.team_name}
                 >
                     <div className="main-text">
-                        <p className="team-name">{main.team_name}</p>
-                        <p className="runner-name">{name}</p>
-                        <p className="runner-info">{run_info}</p>
+                        <AutoFitText className="team-name" maxSize={32} minSize={18}>{main.team_name}</AutoFitText>
+                        <AutoFitText className="runner-name" maxSize={26} minSize={16}>{name}</AutoFitText>
+                        <AutoFitText className="runner-info" maxSize={20} minSize={14}>{run_info}</AutoFitText>
                     </div>
                     <div className="main-games-strip">
                         {gamesCompleted}

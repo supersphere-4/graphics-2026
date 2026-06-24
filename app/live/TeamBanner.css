@@ -93,6 +93,29 @@ img {
     box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.95), 0 0 10px rgba(255, 255, 255, 0.35);
 }
 
+.team-progress-track {
+    background: rgba(0, 0, 0, 0.52);
+    bottom: 0;
+    height: 7px;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    z-index: 6;
+}
+
+.team-progress-fill {
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.78);
+    height: 100%;
+    transition: width 0.4s linear;
+}
+
+.side-banner:not(.main) .team-progress-fill {
+    opacity: 0.72;
+}
+
 .side-banners-panel a {
     display: block;
     height: 100%;
@@ -120,7 +143,7 @@ img {
     padding: 0;
 }
 
-.side-banner .col:first-child {
+.side-banner .banner-logo {
     align-items: center;
     display: flex;
     flex: 0 0 122px;
@@ -132,7 +155,7 @@ img {
     z-index: 4;
 }
 
-.side-banner .col:last-child {
+.side-banner .banner-text {
     align-items: flex-end;
     box-sizing: border-box;
     color: white;
