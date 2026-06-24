@@ -53,9 +53,9 @@ body {
 
 .background-tint {
   background: var(--active-background-tint, transparent);
-  display: none;
   height: 100%;
   inset: 0;
+  mix-blend-mode: color;
   opacity: var(--active-background-tint-opacity, 0.78);
   pointer-events: none;
   position: absolute;
