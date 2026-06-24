@@ -39,34 +39,34 @@ body::-webkit-scrollbar {
 .page-feed {
   --bs-gutter-x: 0;
   background: #000;
-  height: 1080px;
+  height: 2160px;
   margin: 0;
   max-width: none;
   overflow: visible;
   padding: 0;
   position: relative;
-  width: 5168px;
+  width: 7088px;
 }
 
 .background-loop {
-  height: 100%;
+  height: 2160px;
   inset: 0;
   object-fit: cover;
   pointer-events: none;
   position: absolute;
-  width: 100%;
+  width: 3840px;
   z-index: 0;
 }
 
 .background-tint {
   background: var(--active-background-tint, transparent);
-  height: 100%;
+  height: 2160px;
   inset: 0;
   mix-blend-mode: color;
   opacity: var(--active-background-tint-opacity, 0.78);
   pointer-events: none;
   position: absolute;
-  width: 100%;
+  width: 3840px;
   z-index: 0;
 }
 
@@ -112,27 +112,27 @@ body::-webkit-scrollbar {
 
 .broadcast-layout {
   display: block;
-  height: 1080px;
+  height: 2160px;
   position: relative;
-  width: 5168px;
+  width: 3840px;
   z-index: 1;
 }
 
 .side-rail {
   display: grid;
-  grid-template-rows: 828px 72px 132px;
-  height: 1056px;
-  left: 10px;
+  grid-template-rows: 1680px 144px 240px;
+  height: 2112px;
+  left: 20px;
   min-height: 0;
   position: absolute;
-  row-gap: 12px;
-  top: 12px;
-  width: 398px;
+  row-gap: 24px;
+  top: 24px;
+  width: 540px;
 }
 
 .side-banners-panel {
   display: grid;
-  gap: 6px;
+  gap: 12px;
   grid-template-rows: repeat(8, minmax(0, 1fr));
   min-height: 0;
   overflow: hidden;
@@ -150,24 +150,24 @@ body::-webkit-scrollbar {
 .main-stream {
   align-items: center;
   background: #000;
-  border-width: 3px !important;
-  height: 828px;
+  border-width: 6px !important;
+  height: 1620px;
   justify-content: center;
-  left: 440px;
+  left: 572px;
   position: absolute;
-  top: 12px;
-  width: 1470px;
+  top: 24px;
+  width: 3248px;
 }
 
 .main-info-panel {
   background: #000;
   border-color: white !important;
-  border-width: 3px !important;
-  height: 72px;
-  left: 440px;
+  border-width: 6px !important;
+  height: 144px;
+  left: 572px;
   position: absolute;
-  top: 852px;
-  width: 1470px;
+  top: 1668px;
+  width: 3248px;
 }
 
 .main-stream iframe,
@@ -184,11 +184,11 @@ body::-webkit-scrollbar {
   grid-template-columns: repeat(8, 406px);
   grid-template-rows: 306px;
   height: 306px;
-  left: 1920px;
+  left: 572px;
   min-height: 0;
   min-width: 0;
   position: absolute;
-  top: 0;
+  top: 1830px;
   width: 3248px;
   z-index: 2;
 }
@@ -217,9 +217,12 @@ body::-webkit-scrollbar {
   min-width: 400px;
 }
 
-.team-sub-stream,
-.team-placeholder,
 .livesplit-slot {
+  border-width: 6px !important;
+}
+
+.team-sub-stream,
+.team-placeholder {
   border-width: 3px !important;
 }
 
@@ -385,13 +388,13 @@ Link .front-page {
   display: grid;
   gap: 18px;
   grid-template-columns: repeat(8, minmax(0, 1fr));
-  height: 774px;
-  left: 1920px;
+  height: 2160px;
+  left: 3840px;
   margin: 0;
   overflow: hidden;
   padding: 24px;
   position: absolute;
-  top: 306px;
+  top: 0;
   width: 3248px;
   z-index: 1;
 }
