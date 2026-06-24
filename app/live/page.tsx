@@ -11,12 +11,13 @@ import { Suspense, useState } from 'react'
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { useSearchParams, useRouter } from 'next/navigation'
 
-export default function Live() {
+function LiveContent() {
 
     const params = useSearchParams();
-    const main = Number(params.get("main"))
+    const main = Number(params.get("main") ?? 1) || 1
     const main_team = Teams.find((team) => team.team_number == main)
-    const [currRuns, setCurrRuns] = useState(params.getAll("currRuns").map((e) => Number(e)));
+    const initialRuns = params.getAll("currRuns").map((e) => Number(e));
+    const [currRuns, setCurrRuns] = useState(initialRuns.length === Teams.length ? initialRuns : new Array(Teams.length).fill(1));
     const [teamStatus, setTeamStatus] = useState(new Array(8).fill('in progress'))
     const [numTeamsFinished, setNumTeamsFinished] = useState(0);
 
@@ -155,29 +156,38 @@ export default function Live() {
         )})
 
     return (
-    <Suspense fallback={<div className="flex flex-col gap-[32px] row-start-2 items-center"><Image className="m-4" src="/logos/1545.png" alt="1545 logo" width={1000} height={1000} priority/></div>}>
         <Container className="page-feed" fluid>
-            <Row className="flex m-4">
-                <Col className="m-4 border-8" style={{borderColor:"transparent"}} key={'team-banners'}>
-                    {banners}
-                </Col>
-                <Col className={`m-4 main-stream border-8 ${main_team?.team_color} flex`} key={`${main_team?.team_color}-video-main`}>
+            <div className="broadcast-layout">
+                <aside className="side-rail">
+                    <div className="side-banners-panel" key={'team-banners'}>
+                        {banners}
+                    </div>
+                    <div className={`livesplit-slot ${main_team?.team_color}`} />
+                    <div className="broadcast-logo">
+                        <Image src="/logos/1545.png" alt="The 1545 logo" width={400} height={160} priority/>
+                    </div>
+                </aside>
+                <main className={`main-stream border-8 ${main_team?.team_color} flex`} key={`${main_team?.team_color}-video-main`}>
                     <MainTwitchEmbed main={main_team} currRun={Teams[main - 1].schedule.run_order[currRuns[Teams[main - 1].team_number - 1] - 1]} />
-                    </Col>
-                <Col className={`m-4 border-8 ${main_team?.team_color} flex`} key={`${main_team?.team_name} stats`}>
+                </main>
+                <section className={`main-info-panel border-8 ${main_team?.team_color} flex`} key={`${main_team?.team_name} stats`}>
                     <MainTeamBanner main={main_team} currRun={Teams[main - 1].schedule.run_order[currRuns[Teams[main - 1].team_number - 1] - 1]} runsCompleted={currRuns[Teams[main - 1].team_number - 1] - 1} info={info}/>
-                </Col>
-            </Row>
-            <Row className="my-40 flex flex-wrap sub-streams justify-center gap-36">
-                {sub_streams.slice(0, 4)}
-            </Row>
-            <Row className="my-40 flex flex-wrap sub-streams items-center justify-center gap-36">
-                {sub_streams.slice(-4)}
-            </Row>
-            <Row>
+                </section>
+                <section className="live-sub-streams">
+                    {sub_streams}
+                </section>
+            </div>
+            <Row className="team-controls">
                 {team_control}
             </Row>
         </Container>
-    </Suspense>
+    )
+}
+
+export default function Live() {
+    return (
+        <Suspense fallback={<div className="flex flex-col gap-[32px] row-start-2 items-center"><Image className="m-4" src="/logos/1545.png" alt="1545 logo" width={1000} height={1000} priority/></div>}>
+            <LiveContent />
+        </Suspense>
     )
 }

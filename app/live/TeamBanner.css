@@ -3,11 +3,11 @@
 .curr-game {
     display: flex;
     position: sticky;
-    filter: drop-shadow(5px 8px 60px rgba(0, 0, 0, 0.85))
+    filter: drop-shadow(3px 5px 18px rgba(0, 0, 0, 0.9))
 }
 
 img {
-    filter: drop-shadow(5px 10px 50px rgba(0, 0, 0, 1.0))
+    filter: drop-shadow(4px 7px 18px rgba(0, 0, 0, 0.95))
 }
 
 #sm64 {
@@ -68,64 +68,181 @@ img {
 }
 
 .side-banner {
-    border: 8px solid transparent;
-    width: 20vw;
-    height: 3.7vw;
+    --bs-gutter-x: 0;
+    align-items: center;
+    border: 0;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    padding: 6px 8px !important;
+    position: relative;
+    width: 100%;
+}
+
+.side-banners-panel a {
+    display: block;
+    height: 100%;
+    min-height: 0;
+}
+
+.side-banners-panel div.container {
+    border: 0;
+    height: 100%;
+    max-width: none;
+    padding: 0;
+    width: 100%;
+}
+
+.side-banners-panel div.container:hover {
+    border: 0;
+}
+
+.side-banner.row {
+    margin: 0;
+}
+
+.side-banner .col {
+    min-width: 0;
+    padding: 0;
+}
+
+.side-banner .col:first-child {
+    align-items: center;
+    display: flex;
+    flex: 0 0 108px;
+    justify-content: center;
+    max-width: 108px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.side-banner .col:last-child {
+    align-items: flex-end;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: center;
+    min-width: 210px;
+    padding: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 270px;
+    z-index: 5;
+}
+
+.side-banners-panel .side-banner img {
+    margin: 0 !important;
+    height: 72px !important;
+    max-height: none;
+    object-fit: fill;
+    width: 98px !important;
+}
+
+.side-banners-panel .team-name {
+    color: white;
+    display: block;
+    font-size: 19px;
+    line-height: 0.95;
+    margin: 0;
+    overflow: visible;
+    padding: 0;
+    text-align: right;
+    text-shadow: 3px 4px 7px black, 0 0 4px black;
+    text-overflow: clip;
+    text-wrap: balance;
+    overflow-wrap: normal;
+    white-space: normal;
+    width: 100%;
+}
+
+.side-banners-panel .runner-name {
+    color: white;
+    display: block;
+    font-size: 21px;
+    line-height: 1;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    text-overflow: ellipsis;
+    text-align: right;
+    text-shadow: 2px 3px 5px black, 0 0 3px black;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.side-banners-panel .runner-pronouns {
+    color: white;
+    display: block;
+    font-size: 9px;
+    line-height: 1;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    text-overflow: ellipsis;
+    text-align: right;
+    text-shadow: 2px 3px 4px black, 0 0 3px black;
+    white-space: nowrap;
+    width: 100%;
 }
 
 .rust-banner {
-    background: url("/logos/team_emotes/rusty_bucket_babes.png") no-repeat scroll 30% 55%;
-    background-size: 'cover';
+    background: url("/logos/team_emotes/rusty_bucket_babes.png") no-repeat scroll calc(10% + 70px) 30%;
+    background-size: auto 165%;
     background-color: rgb(138, 40, 15);
     background-blend-mode: multiply;
     
 }
 
 .purple-banner {
-    background: url("/logos/team_emotes/grape_apes.png") no-repeat scroll 55% 20%;
-    background-size: 'cover';
+    background: url("/logos/team_emotes/grape_apes.png") no-repeat scroll calc(10% + 70px) 30%;
+    background-size: auto 165%;
     background-color: rgb(88, 1, 88);
     background-blend-mode: multiply;
 }
 
 .red-banner {
-    background: url("/logos/team_emotes/silly_willies.png") no-repeat scroll 35% 20%;
-    background-size: 'cover';
+    background: url("/logos/team_emotes/silly_willies.png") no-repeat scroll calc(10% + 70px) 30%;
+    background-size: auto 165%;
     background-color: rgb(148, 0, 0);
     background-blend-mode: multiply;
 }
 
 .peach-banner {
-    background: url("/logos/team_emotes/peach_and_co.png") no-repeat scroll 25% 50%;
-    background-size: 'cover';
+    background: url("/logos/team_emotes/peach_and_co.png") no-repeat scroll calc(10% + 70px) 30%;
+    background-size: auto 165%;
     background-color: rgb(246, 161, 146);
     background-blend-mode: multiply;
 }
 
 .mint-banner {
-    background: url("/logos/team_emotes/mintallyinsane.png") no-repeat scroll 10% 30%;
-    background-size: 'cover';
+    background: url("/logos/team_emotes/mintallyinsane.png") no-repeat scroll calc(10% + 70px) 30%;
+    background-size: auto 165%;
     background-color: rgb(107, 177, 107);
     background-blend-mode: multiply;
 }
 
 .pink-banner {
-    background: url("/logos/team_emotes/hot.png") no-repeat scroll 30% 55%;
-    background-size: 'cover';
+    background: url("/logos/team_emotes/hot.png") no-repeat scroll calc(10% + 70px) 30%;
+    background-size: auto 165%;
     background-color: rgb(255, 0, 157);
     background-blend-mode: multiply;
 }
 
 .cyan-banner {
-    background: url("/logos/team_emotes/green_tea_m.png") no-repeat scroll 65% 30%;
-    background-size: 'cover';
+    background: url("/logos/team_emotes/green_tea_m.png") no-repeat scroll calc(10% + 70px) 30%;
+    background-size: auto 165%;
     background-color: rgb(0, 128, 128);
     background-blend-mode: multiply;
 }
 
 .gold-banner {
-    background: url("/logos/team_emotes/gaslight.png") no-repeat scroll 45% 70%;
-    background-size: 'cover';
+    background: url("/logos/team_emotes/gaslight.png") no-repeat scroll calc(10% + 70px) 30%;
+    background-size: auto 165%;
     background-color: rgb(148, 113, 26);
     background-blend-mode: multiply;
 }
@@ -141,7 +258,7 @@ div.container:hover {
 }
 
 .side-banner:not(.main) {
-    background-color: var(--main-team-color);
+    background-color: rgba(128, 128, 128, 0.74);
     background-blend-mode: saturation;
 }
 
