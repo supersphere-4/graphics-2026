@@ -112,6 +112,12 @@ function LiveContent() {
         return teamStatus[team_number - 1] === 'finished';
     }
 
+    // Restores a finished team to their last run so they can be shown and controlled again.
+    function undoFinishTeam(team : any) {
+        setTeamStatus(teamStatus.with(team.team_number - 1, 'last run'))
+        setCurrRuns(currRuns.with(team.team_number - 1, team.schedule.run_order.length))
+    }
+
     // Code for refreshing the given team's Twitch embed.
     function refreshStream(team : any) {
         let stream = document.getElementById(`${team.team_color}-stream`) as HTMLIFrameElement;
@@ -148,6 +154,9 @@ function LiveContent() {
                 <Button className={`team-control border-8 m-8 px-8 finish-button ${team.team_color}`} disabled={teamStatus[team.team_number - 1] !== 'last run'} onClick={(e) => {handleSwitchRuns(team, 13); console.log(teamStatus)}} >
                     {teamStatus[team.team_number - 1] === 'finished' ? "FINISHED!" : `GAME ${currRuns[team.team_number - 1]}`}
                 </Button>
+                <Button className={`team-control border-8 m-8 px-8 undo-finish-button ${team.team_color}`} disabled={!isTeamFinished(team.team_number)} onClick={(e) => {undoFinishTeam(team)}} >
+                    Undo Finish
+                </Button>
                 <Button className={`team-control border-8 m-8 px-8 refresh-button ${team.team_color}`} disabled={teamStatus[team.team_number - 1] === 'finished'} onClick={(e) => {refreshStream(team)}} >
                     Refresh
                 </Button>
@@ -157,6 +166,10 @@ function LiveContent() {
 
     return (
         <Container className="page-feed" fluid>
+            <video className="background-loop" autoPlay loop muted playsInline aria-hidden="true">
+                <source src="/animated-background-loop-grayscale.mp4" type="video/mp4" />
+            </video>
+            <div className={`background-tint background-tint-${main_team?.team_color ?? "rust"}`} aria-hidden="true" />
             <div className="broadcast-layout">
                 <aside className="side-rail">
                     <div className="side-banners-panel" key={'team-banners'}>

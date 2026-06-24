@@ -72,11 +72,25 @@ img {
     align-items: center;
     border: 0;
     height: 100%;
+    isolation: isolate;
     margin: 0;
     overflow: hidden;
-    padding: 6px 8px !important;
+    padding: 6px 12px !important;
     position: relative;
     width: 100%;
+}
+
+.side-banner::after {
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.12) 35%, rgba(0, 0, 0, 0.68) 100%);
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: 2;
+}
+
+.side-banner.main {
+    box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.95), 0 0 10px rgba(255, 255, 255, 0.35);
 }
 
 .side-banners-panel a {
@@ -109,26 +123,29 @@ img {
 .side-banner .col:first-child {
     align-items: center;
     display: flex;
-    flex: 0 0 108px;
-    justify-content: center;
-    max-width: 108px;
+    flex: 0 0 122px;
+    justify-content: flex-start;
+    max-width: 122px;
     overflow: hidden;
+    padding-left: 8px;
     position: relative;
-    z-index: 1;
+    z-index: 4;
 }
 
 .side-banner .col:last-child {
     align-items: flex-end;
+    box-sizing: border-box;
     color: white;
     display: flex;
     flex-direction: column;
     height: auto;
     justify-content: center;
+    max-width: calc(100% - 138px);
     min-width: 210px;
     padding: 0;
     pointer-events: none;
     position: absolute;
-    right: 10px;
+    right: 12px;
     top: 50%;
     transform: translateY(-50%);
     width: 270px;
@@ -152,7 +169,7 @@ img {
     overflow: visible;
     padding: 0;
     text-align: right;
-    text-shadow: 3px 4px 7px black, 0 0 4px black;
+    text-shadow: 2px 2px 3px black, 0 0 2px black;
     text-overflow: clip;
     text-wrap: balance;
     overflow-wrap: normal;
@@ -170,7 +187,7 @@ img {
     padding: 0;
     text-overflow: ellipsis;
     text-align: right;
-    text-shadow: 2px 3px 5px black, 0 0 3px black;
+    text-shadow: 2px 2px 3px black, 0 0 2px black;
     white-space: nowrap;
     width: 100%;
 }
@@ -185,9 +202,17 @@ img {
     padding: 0;
     text-overflow: ellipsis;
     text-align: right;
-    text-shadow: 2px 3px 4px black, 0 0 3px black;
+    text-shadow: 1px 1px 2px black, 0 0 2px black;
     white-space: nowrap;
     width: 100%;
+}
+
+.side-banners-panel .side-banner img#bk {
+    height: 60px !important;
+    object-fit: contain;
+    scale: 100%;
+    transform: translate(0, 6px);
+    width: 84px !important;
 }
 
 .rust-banner {
@@ -263,7 +288,39 @@ div.container:hover {
 }
 
 .side-banner:not(.main):hover {
-    background-color: revert;
+    background-blend-mode: multiply;
+}
+
+.side-banner.rust-banner:not(.main):hover {
+    background-color: rgb(138, 40, 15);
+}
+
+.side-banner.purple-banner:not(.main):hover {
+    background-color: rgb(88, 1, 88);
+}
+
+.side-banner.red-banner:not(.main):hover {
+    background-color: rgb(148, 0, 0);
+}
+
+.side-banner.peach-banner:not(.main):hover {
+    background-color: rgb(246, 161, 146);
+}
+
+.side-banner.mint-banner:not(.main):hover {
+    background-color: rgb(107, 177, 107);
+}
+
+.side-banner.pink-banner:not(.main):hover {
+    background-color: rgb(255, 0, 157);
+}
+
+.side-banner.cyan-banner:not(.main):hover {
+    background-color: rgb(0, 128, 128);
+}
+
+.side-banner.gold-banner:not(.main):hover {
+    background-color: rgb(148, 113, 26);
 }
 
 .finished {

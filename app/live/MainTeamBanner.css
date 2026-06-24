@@ -91,7 +91,8 @@
 }
 
 .complete {
-    filter: grayscale(100%) brightness(75%);
+    filter: none;
+    opacity: 1;
 }
 
 .main-banner.rust-banner {

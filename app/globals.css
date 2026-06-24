@@ -31,12 +31,76 @@ body {
 
 .page-feed {
   --bs-gutter-x: 0;
+  background: #000;
   height: 2466px;
   margin: 0;
   max-width: none;
   overflow: visible;
   padding: 0;
+  position: relative;
   width: 3248px;
+}
+
+.background-loop {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+}
+
+.background-tint {
+  background: var(--active-background-tint, transparent);
+  display: none;
+  height: 100%;
+  inset: 0;
+  opacity: var(--active-background-tint-opacity, 0.78);
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+}
+
+.background-tint-rust {
+  --active-background-tint: #833424;
+  --active-background-tint-opacity: 0.82;
+}
+
+.background-tint-purple {
+  --active-background-tint: #7a2da5;
+  --active-background-tint-opacity: 0.86;
+}
+
+.background-tint-red {
+  --active-background-tint: #ff0b0b;
+  --active-background-tint-opacity: 0.8;
+}
+
+.background-tint-peach {
+  --active-background-tint: #f6a192;
+  --active-background-tint-opacity: 0.58;
+}
+
+.background-tint-mint {
+  --active-background-tint: #b8e9a9;
+  --active-background-tint-opacity: 0.66;
+}
+
+.background-tint-pink {
+  --active-background-tint: #ef70d1;
+  --active-background-tint-opacity: 0.78;
+}
+
+.background-tint-cyan {
+  --active-background-tint: #22ece8;
+  --active-background-tint-opacity: 0.66;
+}
+
+.background-tint-gold {
+  --active-background-tint: #ffd400;
+  --active-background-tint-opacity: 0.72;
 }
 
 .broadcast-layout {
@@ -44,6 +108,7 @@ body {
   height: 1080px;
   position: relative;
   width: 3248px;
+  z-index: 1;
 }
 
 .side-rail {
@@ -265,12 +330,12 @@ Link .front-page {
   filter:grayscale(100%);
 }
 
-.finish-button, .refresh-button {
+.finish-button, .refresh-button, .undo-finish-button {
   font-size: 50px;
   width: 5%;
 }
 
-.finish-button:not([disabled]):hover, .refresh-button:not([disabled]):hover {
+.finish-button:not([disabled]):hover, .refresh-button:not([disabled]):hover, .undo-finish-button:not([disabled]):hover {
   background-color: rgb(255, 0, 0);
   filter: contrast(85%)
 }
@@ -284,7 +349,9 @@ Link .front-page {
   margin: 306px 0 0 0;
   overflow: hidden;
   padding: 24px;
+  position: relative;
   width: 1920px;
+  z-index: 1;
 }
 
 .team-controls > .col {
@@ -320,10 +387,15 @@ Link .front-page {
 }
 
 .team-controls .finish-button,
-.team-controls .refresh-button {
+.team-controls .refresh-button,
+.team-controls .undo-finish-button {
   font-size: 24px;
-  grid-column: span 2;
   height: 86px;
   line-height: 1;
   width: 100%;
+}
+
+.team-controls .finish-button,
+.team-controls .refresh-button {
+  grid-column: span 2;
 }
