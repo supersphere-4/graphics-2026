@@ -18,7 +18,7 @@ const TwitchEmbed = ({team, main, currRun, finished}) => {
 
         const name = team.schedule.runs[currRun].name;
         const twitch = RunnerInfo.find((runner) => runner.name == name).twitch;
-        const src = `https://player.twitch.tv/?channel=${twitch ?? name}&parent=localhost&autoplay=true&muted=true`;
+        const src = `https://player.twitch.tv/?channel=${twitch ?? name}&parent=${location.hostname}&autoplay=true&muted=true`;
         
 
         const scale = 1.
