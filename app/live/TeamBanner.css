@@ -304,7 +304,7 @@ img {
 .gold-banner {
     background: url("/logos/team_emotes/gaslight.png") no-repeat scroll 100% 75%;
     background-size: 60% 300%;
-    background-color: rgb(148, 113, 26);
+    background-color: #DAA520;
     background-blend-mode: multiply;
 }
 
