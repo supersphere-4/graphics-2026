@@ -146,10 +146,10 @@ img {
     align-items: center;
     display: flex;
     flex: 0 0 244px;
-    justify-content: flex-start;
+    justify-content: center;
     max-width: 244px;
     overflow: hidden;
-    padding-left: 16px;
+    padding-left: 0;
     position: relative;
     z-index: 4;
 }
@@ -193,6 +193,28 @@ img {
 
 #smg1, #c2, #c3 {
     transform: scale(1.125);
+}
+
+.side-banners-panel .side-banner img.curr-game {
+    height: 132px !important;
+    object-fit: contain;
+    object-position: center center;
+    scale: 1 !important;
+    transform: none !important;
+    width: 184px !important;
+}
+
+.side-banners-panel .side-banner img.curr-game#c1,
+.side-banners-panel .side-banner img.curr-game#sms {
+    height: 138px !important;
+    width: 198px !important;
+}
+
+.side-banners-panel .side-banner img.curr-game#smg1,
+.side-banners-panel .side-banner img.curr-game#c2,
+.side-banners-panel .side-banner img.curr-game#c3 {
+    height: 126px !important;
+    width: 176px !important;
 }
 
 .side-banners-panel .team-name {
