@@ -5,7 +5,7 @@
     background-blend-mode: normal;
     background-image: none !important;
     display: grid;
-    grid-template-columns: 780px minmax(0, 1fr);
+    grid-template-columns: 1450px minmax(0, 1fr);
     height: 100%;
     max-width: none;
     padding: 0;
@@ -16,10 +16,10 @@
     align-items: center;
     display: flex;
     flex-direction: row;
-    gap: 18px;
+    gap: 36px;
     justify-content: center;
     min-width: 0;
-    padding: 0 16px;
+    padding: 0 32px;
 }
 
 .main-text .team-name,
@@ -55,13 +55,13 @@
 .main-games-strip {
     align-items: center;
     background: #000;
-    border-left: 3px solid white;
+    border-left: 6px solid white;
     display: grid;
-    gap: 10px;
+    gap: 16px;
     grid-template-columns: repeat(13, minmax(0, 1fr));
     min-width: 0;
     overflow: hidden;
-    padding: 0 12px;
+    padding: 0 24px;
 }
 
 .main-game-mark {
@@ -73,7 +73,7 @@
 
 .main-game-mark img {
     height: auto;
-    max-height: 44px;
+    max-height: 88px;
     max-width: 100%;
     object-fit: contain;
     width: auto;

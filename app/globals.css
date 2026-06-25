@@ -39,34 +39,34 @@ body::-webkit-scrollbar {
 .page-feed {
   --bs-gutter-x: 0;
   background: #000;
-  height: 3280px;
+  height: 2202px;
   margin: 0;
   max-width: none;
   overflow: visible;
   padding: 0;
   position: relative;
-  width: 3840px;
+  width: 5268px;
 }
 
 .background-loop {
-  height: 2160px;
+  height: 2202px;
   inset: 0;
   object-fit: cover;
   pointer-events: none;
   position: absolute;
-  width: 3840px;
+  width: 4148px;
   z-index: 0;
 }
 
 .background-tint {
   background: var(--active-background-tint, transparent);
-  height: 2160px;
+  height: 2202px;
   inset: 0;
   mix-blend-mode: color;
   opacity: var(--active-background-tint-opacity, 0.78);
   pointer-events: none;
   position: absolute;
-  width: 3840px;
+  width: 4148px;
   z-index: 0;
 }
 
@@ -112,22 +112,22 @@ body::-webkit-scrollbar {
 
 .broadcast-layout {
   display: block;
-  height: 2160px;
+  height: 2202px;
   position: relative;
-  width: 3840px;
+  width: 4148px;
   z-index: 1;
 }
 
 .side-rail {
   display: grid;
-  grid-template-rows: 1680px 144px 240px;
-  height: 2112px;
+  grid-template-rows: 1644px 144px 306px;
+  height: 2154px;
   left: 20px;
   min-height: 0;
   position: absolute;
   row-gap: 24px;
   top: 24px;
-  width: 540px;
+  width: 796px;
 }
 
 .side-banners-panel {
@@ -151,12 +151,12 @@ body::-webkit-scrollbar {
   align-items: center;
   background: #000;
   border-width: 6px !important;
-  height: 1620px;
+  height: 1656px;
   justify-content: center;
-  left: 572px;
+  left: 880px;
   position: absolute;
   top: 24px;
-  width: 3248px;
+  width: 2944px;
 }
 
 .main-info-panel {
@@ -164,10 +164,10 @@ body::-webkit-scrollbar {
   border-color: white !important;
   border-width: 6px !important;
   height: 144px;
-  left: 572px;
+  left: 880px;
   position: absolute;
-  top: 1668px;
-  width: 3248px;
+  top: 1692px;
+  width: 2944px;
 }
 
 .main-stream iframe,
@@ -180,16 +180,16 @@ body::-webkit-scrollbar {
 
 .live-sub-streams {
   display: grid;
-  gap: 0;
-  grid-template-columns: repeat(8, 406px);
-  grid-template-rows: 306px;
-  height: 306px;
-  left: 572px;
+  gap: 8px;
+  grid-template-columns: repeat(8, 430px);
+  grid-template-rows: 324px;
+  height: 324px;
+  left: 328px;
   min-height: 0;
   min-width: 0;
   position: absolute;
-  top: 1830px;
-  width: 3248px;
+  top: 1844px;
+  width: 3496px;
   z-index: 2;
 }
 
@@ -388,15 +388,15 @@ Link .front-page {
   display: grid;
   gap: 10px;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(8, 104px) 86px;
-  height: 1120px;
-  left: 0;
+  grid-template-rows: repeat(8, 220px) 86px;
+  height: 2202px;
+  left: 4148px;
   margin: 0;
   overflow: hidden;
-  padding: 24px;
+  padding: 16px;
   position: absolute;
-  top: 2160px;
-  width: 3840px;
+  top: 0;
+  width: 1120px;
   z-index: 1;
 }
 
@@ -404,14 +404,14 @@ Link .front-page {
   align-items: center;
   display: grid !important;
   gap: 10px;
-  grid-template-columns: repeat(13, 86px) repeat(4, 140px);
-  grid-template-rows: 86px;
+  grid-template-columns: repeat(7, 86px) repeat(4, 96px);
+  grid-template-rows: repeat(2, 86px);
   justify-content: start;
   margin: 0;
   max-width: none;
   min-width: 0;
   overflow: hidden;
-  padding: 8px 12px;
+  padding: 12px 10px;
 }
 
 .twitch-login-controls {
@@ -467,13 +467,12 @@ Link .front-page {
 .team-controls .refresh-button,
 .team-controls .undo-finish-button,
 .team-controls .main-switch-button {
-  font-size: 24px;
+  font-size: 20px;
   height: 86px;
   line-height: 1;
-  width: 140px;
+  width: 96px;
 }
 
-.team-controls .finish-button,
-.team-controls .refresh-button {
-  grid-column: auto;
+.team-controls .finish-button {
+  grid-column: 8;
 }

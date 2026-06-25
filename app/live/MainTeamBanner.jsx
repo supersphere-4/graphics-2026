@@ -82,9 +82,9 @@ const MainTeamBanner = ({main, currRun, runsCompleted, info}) => {
                      key={main.team_name}
                 >
                     <div className="main-text">
-                        <AutoFitText className="team-name" maxSize={32} minSize={18}>{main.team_name}</AutoFitText>
-                        <AutoFitText className="runner-name" maxSize={26} minSize={16}>{name}</AutoFitText>
-                        <AutoFitText className="runner-info" maxSize={20} minSize={14}>{run_info}</AutoFitText>
+                        <AutoFitText className="team-name" maxSize={64} minSize={28}>{main.team_name}</AutoFitText>
+                        <AutoFitText className="runner-name" maxSize={52} minSize={24}>{name}</AutoFitText>
+                        <AutoFitText className="runner-info" maxSize={40} minSize={20}>{run_info}</AutoFitText>
                     </div>
                     <div className="main-games-strip">
                         {gamesCompleted}
