@@ -10,62 +10,6 @@ img {
     filter: drop-shadow(2px 4px 18px rgba(0, 0, 0, 0.95))
 }
 
-#sm64 {
-    transform: translate(5%, 10%);
-    scale: 130%; 
-}
-
-
-#sms {
-    transform: translate(0%, 10%);
-}
-
-
-#smg1 {
-    scale: 120%;
-}
-
-#smg2 {
-    transform: translate(0px, 10%);
-}
-
-#bk {
-    transform: translate(0px, 10%);
-    scale: 120%;
-}
-
-#c1 {
-    transform: translate(0px, 10%);
-    scale: 140%;
-}
-
-#dk64 {
-    transform: translate(0px, 10%);
-}
-
-#c2 {
-    transform: translate(0px, 10%);
-    scale: 120%;
-}
-
-#c3 {
-    transform: translate(0px, 10%);
-    scale: 120%;
-}
-
-#s1 {
-    transform: translate(0px, 10%);
-}
-
-#s2 {
-    transform: translate(0px, 10%);
-}
-
-
-#s3 {
-    transform: translate(0px, 10%);
-}
-
 .side-banner {
     --bs-gutter-x: 0;
     align-items: center;
@@ -177,44 +121,16 @@ img {
 .side-banners-panel .side-banner img {
     margin: 0 !important;
     height: 150px !important;
+    width: 150px !important;
     max-height: none;
     object-fit: contain;
-    width: 150px !important;
     transform: translate(0%, 10%);
     transform: scale(1.25);
 }
 
-#c1, #sms {
+.side-banners-panel .side-banner #c1,
+.side-banners-panel .side-banner #sms {
     transform: scale(1.5);
-}
-#bk, #sm64, #smg2, #dk64, #s1, #s2, #s3 {
-    transform: scale(1.25);
-}
-
-#smg1, #c2, #c3 {
-    transform: scale(1.125);
-}
-
-.side-banners-panel .side-banner img.curr-game {
-    height: 132px !important;
-    object-fit: contain;
-    object-position: center center;
-    scale: 1 !important;
-    transform: none !important;
-    width: 184px !important;
-}
-
-.side-banners-panel .side-banner img.curr-game#c1,
-.side-banners-panel .side-banner img.curr-game#sms {
-    height: 138px !important;
-    width: 198px !important;
-}
-
-.side-banners-panel .side-banner img.curr-game#smg1,
-.side-banners-panel .side-banner img.curr-game#c2,
-.side-banners-panel .side-banner img.curr-game#c3 {
-    height: 126px !important;
-    width: 176px !important;
 }
 
 .side-banners-panel .team-name {
@@ -237,12 +153,9 @@ img {
 .side-banners-panel .runner-name {
     color: white;
     display: block;
-    font-size: 42px;
+    font-size: 36px;
     line-height: 1;
     margin-top: 10;
-    overflow: hidden;
-    padding: 0;
-    text-overflow: ellipsis;
     text-align: right;
     text-shadow: 2px 2px 3px black, 0 0 2px black;
     white-space: nowrap;
@@ -263,15 +176,7 @@ img {
     white-space: nowrap;
     width: 100%;
 }
-/* 
-.side-banners-panel .side-banner img#bk {
-    height: 120px !important;
-    object-fit: contain;
-    scale: 100%;
-    transform: translate(0, 12px);
-    width: 168px !important;
-}
-*/
+
 .rust-banner {
     background: url("/logos/team_emotes/rusty_bucket_babes_reversed.png") no-repeat scroll 100% 30%;
     background-size: 45% 150%;

@@ -18,16 +18,13 @@ const TwitchEmbed = ({team, main, currRun, finished}) => {
 
         const name = team.schedule.runs[currRun].name;
         const twitch = RunnerInfo.find((runner) => runner.name == name).twitch;
-        let src = "https://player.twitch.tv/?channel=" + (team.schedule.runs[currRun].name) + "&parent=localhost&autoplay=true&muted=true";
+        const src = `https://player.twitch.tv/?channel=${twitch ?? name}&parent=localhost&autoplay=true&muted=true`;
         
 
         const scale = 1.
         const width = 640 * scale
         const height = 360 * scale
 
-        if (twitch) {
-            src = "https://player.twitch.tv/?channel=" + twitch + "&parent=localhost&autoplay=true&muted=true";
-        }
         if (team.team_number == main | finished) {
             return (
                     <Col className={`border-8 flex ${team.team_color} team-placeholder`} key={team.team_name}>
