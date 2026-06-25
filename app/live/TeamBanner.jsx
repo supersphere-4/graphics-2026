@@ -8,7 +8,7 @@ import {useSearchParams} from "next/navigation"
 
 // Renders the given team's banner on the left side, displaying the team name, 
 // current runner, pronouns (if given), the current game logo, and the team's emote as the background.
-const TeamBanner = ({team, currRun, main, finished}) => {
+const TeamBanner = ({team, currRun, main, finished, progressPercent = 0}) => {
         
         const searchParams = useSearchParams();
         let url = new URLSearchParams(searchParams)
@@ -18,6 +18,7 @@ const TeamBanner = ({team, currRun, main, finished}) => {
         url.set('main', team.team_number);
         const name = team.schedule.runs[currRun].name;
         const pronouns = RunnerInfo.find((runner) => runner.name == name).pronouns;
+        const progressWidth = `${Math.max(0, Math.min(100, Number(finished ? 100 : progressPercent) || 0))}%`;
         
         if (finished) {
             return (
@@ -25,7 +26,7 @@ const TeamBanner = ({team, currRun, main, finished}) => {
                     <Container className="flex">
                         <Row className={`${team.team_number === main ? "main": ""} p-2 side-banner ${team.team_color}-banner`}
                             key={team.team_name}>
-                            <Col>
+                            <Col className="banner-logo">
                                 <Image className={team.team_color + ' curr-game'} 
                                     src={`/logos/${Games[currRun][1]}.png`} 
                                     alt={`${Games[currRun][0]} logo`}
@@ -34,10 +35,13 @@ const TeamBanner = ({team, currRun, main, finished}) => {
                                     width={500} height={500}
                                     style={{float: 'left', width:'20%', margin:'1.5rem', display:'block'}} />
                             </Col>
-                            <Col>
+                            <Col className="banner-text">
                                 <p className="team-name">{team.team_name}</p>
                                 <p className="runner-name">FINISHED!</p>
                             </Col>
+                            <div className="team-progress-track" aria-hidden="true">
+                                <div className="team-progress-fill" style={{width: progressWidth}} />
+                            </div>
 
                         </Row>
                     </Container>
@@ -50,7 +54,7 @@ const TeamBanner = ({team, currRun, main, finished}) => {
                 <Container className="flex">
                     <Row className={`${team.team_number === main ? "main": ""} p-2 side-banner ${team.team_color}-banner`}
                         key={team.team_name}>
-                        <Col>
+                        <Col className="banner-logo">
                             <Image className={team.team_color + ' curr-game'} 
                                 src={`/logos/${Games[currRun][1]}.png`} 
                                 alt={`${Games[currRun][0]} logo`}
@@ -59,11 +63,14 @@ const TeamBanner = ({team, currRun, main, finished}) => {
                                 width={500} height={500}
                                 style={{float: 'left', width:'20%', margin:'1.5rem', display:'block'}} />
                         </Col>
-                        <Col>
+                        <Col className="banner-text">
                             <p className="team-name">{team.team_name}</p>
                             <p className="runner-name">{name}</p>
                             <p className="runner-pronouns"> {pronouns} </p>
                         </Col>
+                        <div className="team-progress-track" aria-hidden="true">
+                            <div className="team-progress-fill" style={{width: progressWidth}} />
+                        </div>
 
                     </Row>
                 </Container>

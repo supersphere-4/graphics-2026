@@ -1,36 +1,94 @@
+"use client"
+
 import Games from "./data/games.json"
-import RunnerInfo from "./data/runnerinfo_new.json"
-import {Container, Row, Col} from "react-bootstrap"
+import {Container} from "react-bootstrap"
 import Image from "next/image"
 import "./MainTeamBanner.css"
+import {useCallback, useLayoutEffect, useRef, useState} from "react"
 
-// Displays the side panel to the right of the main stream.
+const AutoFitText = ({children, className, maxSize, minSize = 14}) => {
+        const textRef = useRef(null);
+        const [fontSize, setFontSize] = useState(maxSize);
+
+        const fitText = useCallback(() => {
+                const text = textRef.current;
+                if (!text) return;
+
+                let low = minSize;
+                let high = maxSize;
+                let best = minSize;
+
+                while (low <= high) {
+                        const nextSize = Math.floor((low + high) / 2);
+                        text.style.fontSize = `${nextSize}px`;
+
+                        if (text.scrollWidth <= text.clientWidth) {
+                                best = nextSize;
+                                low = nextSize + 1;
+                        } else {
+                                high = nextSize - 1;
+                        }
+                }
+
+                text.style.fontSize = `${best}px`;
+                setFontSize(best);
+        }, [maxSize, minSize]);
+
+        useLayoutEffect(() => {
+                fitText();
+
+                const text = textRef.current;
+                if (!text) return;
+
+                const observer = new ResizeObserver(fitText);
+                observer.observe(text);
+
+                return () => observer.disconnect();
+        }, [children, fitText]);
+
+        return (
+                <p className={className} ref={textRef} style={{fontSize}}>
+                        {children}
+                </p>
+        )
+}
+
+// Displays the lower banner for the main team.
 // Contains the team's name, current runner, and either:
 // Personal Best, if the runner's PB hasn't changed since submissions
 // Submission PB, Current PB, League Points, if the runner's PB has changed since submissions
 const MainTeamBanner = ({main, currRun, runsCompleted, info}) => {
 
         const name = main.schedule.runs[currRun].name;
+        const game = main.schedule.runs[currRun].game;
         const run_order = main.schedule.run_order.slice(0, runsCompleted);
         const pb = main.schedule.runs[currRun].submission_pb;
         const final_pb = (main.schedule.runs[currRun].final_pb);
         const lp = (main.schedule.runs[currRun].lp);
-        const run_info = (final_pb ? ["Submission PB: " + pb,"Current PB: " + final_pb,"League Points: " + lp][info % 3] : "PB: " + pb)
+        const team_lp = main.lp;
+        const run_info = (final_pb ? [
+            `Game ${runsCompleted + 1} / 13`,
+            `Current Game: ${game}`,
+            `Current Runner: ${name}`,
+            `Submission PB: ${pb}`,
+            `Current PB: ${final_pb}`,
+            `League Points: ${lp}`,
+            `Team League Points: ${team_lp}`][info % 7] :  [
+            
+            `Game ${runsCompleted + 1} / 13`,
+            `Current Game: ${game}`,
+            `Runner: ${name}`,
+            `PB: ${pb}`,
+            `Team League Points: ${team_lp}`][info % 5])
 
-        let width;
         const gamesCompleted = Games.map((game) => {
                 let src = "/logos/" + game[1] + ".png";
-                if (game[0].includes('Mario')) {
-                    width = 210
-                } else {
-                    width = 300
-                }
-                return <Col className={` ${main.team_color}`}
+                return <div className={`main-game-mark ${main.team_color}`}
                             key={`team-${main.team_number}-${game[1]}`}>
-                                <Image src={src} alt={`${game[0]} logo`} width={width} height={width}
+                                <Image src={src} alt={`${game[0]} logo`} width={500} height={500}
                                        className={run_order.includes(Games.indexOf(game)) ? "complete" :
                                                            currRun == Games.indexOf(game) ? "in-progress" : "incomplete"}/>
-                       </Col>
+                       </div>
             }
     )
 
@@ -38,29 +96,14 @@ const MainTeamBanner = ({main, currRun, runsCompleted, info}) => {
                 <Container className={`main-banner ${main.team_color}-banner ${main.team_color}`}
                      key={main.team_name}
                 >
-                    <Row className="main-text">
-                        <Col>
-                            <p className="team-name">{main.team_name}</p>
-                            <p className="runner-name">{name}</p>
-                            <p className="runner-info">{run_info}</p>
-                        </Col>
-                    </Row>
-                    <Row className="flex flex-wrap items-center justify-center p-8 gap-4">
-                        {gamesCompleted}
-                    </Row>
-                   <Row>
-                        <Col className="flex justify-center">
-                            <Image className={`${main.team_color} curr-game m-4 py-8`} 
-                                   src={'/logos/' + Games[currRun][1] + '.png'} 
-                                   alt={`${Games[currRun][0]} logo`}
-                                   key={`team-${main.team_number}-${Games[currRun][1]}`}
-                                   id={Games[currRun][1]}
-                                   width={500}
-                                   height={500}
+                    <div className="main-text">
+                        <AutoFitText className="team-name" maxSize={64} minSize={28}>{main.team_name}</AutoFitText>
 
-                            />
-                        </Col>
-                    </Row>
+                        <AutoFitText className="runner-info" maxSize={40} minSize={20}>{run_info}</AutoFitText>
+                    </div>
+                    <div className="main-games-strip">
+                        {gamesCompleted}
+                    </div>
 
                 </Container>
 

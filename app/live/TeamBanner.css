@@ -3,129 +3,248 @@
 .curr-game {
     display: flex;
     position: sticky;
-    filter: drop-shadow(5px 8px 60px rgba(0, 0, 0, 0.85))
+    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.9))
 }
 
 img {
-    filter: drop-shadow(5px 10px 50px rgba(0, 0, 0, 1.0))
+    filter: drop-shadow(2px 4px 18px rgba(0, 0, 0, 0.95))
 }
 
 #sm64 {
-    transform: translate(0px, -22%);
+    transform: scale(1.05, 1.25);
 }
 
-
-/* #sms {
-    transform: translate(0px, 0px);
-}
-*/
-
-#smg1 {
-    scale: 120%;
-}
-
-#smg2 {
-    transform: translate(0px, 20%);
-}
-
-#bk {
-    transform: translate(0px, 20px);
-    scale: 120%;
-}
-
-#c1 {
-    transform: translate(0px, 10%);
-    scale: 140%;
-}
-
-/* #dk64 {
-    transform: translate(0px, -15px);
-} */
-
-#c2 {
-    transform: translate(0px, -5%);
-    scale: 110%;
-}
-
-#c3 {
-    transform: translate(0px, -5%);
-    scale: 110%;
-}
-
-
-/*
-#s1 {
-    transform: translate(0px, -20px);
-}
-
-#s2 {
-    transform: translate(0px, -30px);
-}
-*/
-
-#s3 {
-    transform: translate(0px, -5%);
+#bk, #c1, #s1, #smg2 {
+    transform: scale(1.05, .8);
 }
 
 .side-banner {
-    border: 8px solid transparent;
-    width: 20vw;
-    height: 3.7vw;
+    --bs-gutter-x: 0;
+    align-items: center;
+    border: 0;
+    height: 100%;
+    isolation: isolate;
+    margin: 0;
+    overflow: hidden;
+    padding: 12px 24px !important;
+    position: relative;
+    width: 100%;
 }
 
+.side-banner::after {
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.12) 35%, rgba(0, 0, 0, 0.68) 100%);
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: 2;
+}
+
+.side-banner.main {
+    box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.95), 0 0 10px rgba(255, 255, 255, 0.35);
+}
+
+.team-progress-track {
+    background: rgba(0, 0, 0, 0.52);
+    bottom: 0;
+    height: 14px;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    z-index: 6;
+}
+
+.team-progress-fill {
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.78);
+    height: 100%;
+    transition: width 0.4s linear;
+}
+
+.side-banner:not(.main) .team-progress-fill {
+    opacity: 0.72;
+}
+
+.side-banners-panel a {
+    display: block;
+    height: 100%;
+    min-height: 0;
+}
+
+.side-banners-panel div.container {
+    border: 0;
+    height: 100%;
+    max-width: none;
+    padding: 0;
+    width: 100%;
+}
+
+.side-banners-panel div.container:hover {
+    border: 0;
+}
+
+.side-banner.row {
+    margin: 0;
+}
+
+.side-banner .col {
+    min-width: 0;
+    padding: 0;
+}
+
+.side-banner .banner-logo {
+    align-items: center;
+    display: flex;
+    flex: 200 0 200px;
+    justify-content: flex-start;
+    margin-left: 120px;
+    position: relative;
+    z-index: 4;
+    transform: translate(0px, 10%);
+    transform: scale(1.4, 1);
+}
+
+.side-banner .banner-text {
+    align-items: flex-end;
+    box-sizing: border-box;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: center;
+    max-width: calc(100% - 276px);
+    min-width: 420px;
+    padding: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 540px;
+    z-index: 5;
+}
+
+.side-banners-panel .side-banner img {
+    margin: 0 !important;
+    height: 150px !important;
+    max-height: none;
+    object-fit: fill;
+    width: 150px !important;
+}
+
+.side-banners-panel .team-name {
+    color: white;
+    display: block;
+    font-size: 38px;
+    line-height: 0.95;
+    margin: 0;
+    overflow: visible;
+    padding: 0;
+    text-align: right;
+    text-shadow: 2px 2px 3px black, 0 0 2px black;
+    text-overflow: clip;
+    text-wrap: balance;
+    overflow-wrap: normal;
+    white-space: normal;
+    width: 100%;
+}
+
+.side-banners-panel .runner-name {
+    color: white;
+    display: block;
+    font-size: 42px;
+    line-height: 1;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    text-overflow: ellipsis;
+    text-align: right;
+    text-shadow: 2px 2px 3px black, 0 0 2px black;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.side-banners-panel .runner-pronouns {
+    color: white;
+    display: block;
+    font-size: 18px;
+    line-height: 1;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    text-overflow: ellipsis;
+    text-align: right;
+    text-shadow: 1px 1px 2px black, 0 0 2px black;
+    white-space: nowrap;
+    width: 100%;
+}
+
+/* 
+.side-banners-panel .side-banner img#bk {
+    height: 120px !important;
+    object-fit: contain;
+    scale: 100%;
+    transform: translate(0, 12px);
+    width: 168px !important;
+}
+*/
+
 .rust-banner {
-    background: url("/logos/team_emotes/rusty_bucket_babes.png") no-repeat scroll 30% 55%;
-    background-size: 'cover';
+    background: url("/logos/team_emotes/rusty_bucket_babes_reversed.png") no-repeat scroll 100% 30%;
+    background-size: 45% 150%;
     background-color: rgb(138, 40, 15);
     background-blend-mode: multiply;
     
 }
 
 .purple-banner {
-    background: url("/logos/team_emotes/grape_apes.png") no-repeat scroll 55% 20%;
-    background-size: 'cover';
+    background: url("/logos/team_emotes/grape_apes.png") no-repeat scroll 100% 30%;
+    background-size: 50% 240%;
     background-color: rgb(88, 1, 88);
     background-blend-mode: multiply;
 }
 
 .red-banner {
-    background: url("/logos/team_emotes/silly_willies.png") no-repeat scroll 35% 20%;
-    background-size: 'cover';
+    background: url("/logos/team_emotes/silly_willies.png") no-repeat scroll 100% 30%;
+    background-size: 50% 165%;
     background-color: rgb(148, 0, 0);
     background-blend-mode: multiply;
 }
 
+
 .peach-banner {
-    background: url("/logos/team_emotes/peach_and_co.png") no-repeat scroll 25% 50%;
-    background-size: 'cover';
+    background: url("/logos/team_emotes/peach_and_co_reversed.png") no-repeat scroll 100% 40%;
+    background-size: 50% 165%;
     background-color: rgb(246, 161, 146);
     background-blend-mode: multiply;
 }
 
 .mint-banner {
-    background: url("/logos/team_emotes/mintallyinsane.png") no-repeat scroll 10% 30%;
-    background-size: 'cover';
+    background: url("/logos/team_emotes/mintallyinsane.png") no-repeat scroll 100% 40%;
+    background-size: 50% 150%;
     background-color: rgb(107, 177, 107);
     background-blend-mode: multiply;
 }
 
 .pink-banner {
-    background: url("/logos/team_emotes/hot.png") no-repeat scroll 30% 55%;
-    background-size: 'cover';
+    background: url("/logos/team_emotes/hot.png") no-repeat scroll 100% 30%;
+    background-size: 50% 150%;
     background-color: rgb(255, 0, 157);
     background-blend-mode: multiply;
 }
 
 .cyan-banner {
-    background: url("/logos/team_emotes/green_tea_m.png") no-repeat scroll 65% 30%;
-    background-size: 'cover';
+    background: url("/logos/team_emotes/green_tea_m.png") no-repeat scroll 100% 50%;
+    background-size: 50% 195%;
     background-color: rgb(0, 128, 128);
     background-blend-mode: multiply;
 }
 
 .gold-banner {
-    background: url("/logos/team_emotes/gaslight.png") no-repeat scroll 45% 70%;
-    background-size: 'cover';
+    background: url("/logos/team_emotes/gaslight.png") no-repeat scroll 100% 75%;
+    background-size: 60% 300%;
     background-color: rgb(148, 113, 26);
     background-blend-mode: multiply;
 }
@@ -141,12 +260,44 @@ div.container:hover {
 }
 
 .side-banner:not(.main) {
-    background-color: var(--main-team-color);
+    background-color: rgba(128, 128, 128, 0.74);
     background-blend-mode: saturation;
 }
 
 .side-banner:not(.main):hover {
-    background-color: revert;
+    background-blend-mode: multiply;
+}
+
+.side-banner.rust-banner:not(.main):hover {
+    background-color: rgb(138, 40, 15);
+}
+
+.side-banner.purple-banner:not(.main):hover {
+    background-color: rgb(88, 1, 88);
+}
+
+.side-banner.red-banner:not(.main):hover {
+    background-color: rgb(148, 0, 0);
+}
+
+.side-banner.peach-banner:not(.main):hover {
+    background-color: rgb(246, 161, 146);
+}
+
+.side-banner.mint-banner:not(.main):hover {
+    background-color: rgb(107, 177, 107);
+}
+
+.side-banner.pink-banner:not(.main):hover {
+    background-color: rgb(255, 0, 157);
+}
+
+.side-banner.cyan-banner:not(.main):hover {
+    background-color: rgb(0, 128, 128);
+}
+
+.side-banner.gold-banner:not(.main):hover {
+    background-color: rgb(148, 113, 26);
 }
 
 .finished {
