@@ -16,21 +16,19 @@
     align-items: center;
     display: flex;
     flex-direction: row;
-    gap: 36px;
+    gap: 8px;
     justify-content: center;
     min-width: 0;
     padding: 0 32px;
 }
 
 .main-text .team-name,
-.main-text .runner-name,
 .main-text .runner-info {
-    line-height: 1;
     margin: 0;
     overflow: hidden;
     padding: 0;
     text-align: left;
-    text-overflow: clip;
+    text-overflow: ellipsis;
     text-shadow: none;
     white-space: nowrap;
     min-width: 0;
@@ -39,17 +37,13 @@
 .main-text .team-name {
     font-family: 'Encode Sans', Helvetica, sans-serif;
     font-weight: 1000;
-    flex: 1.45 1 0;
-}
-
-.main-text .runner-name {
-    font-weight: 800;
-    flex: 0.95 1 0;
+    flex: 4 2 0;
 }
 
 .main-text .runner-info {
+    text-align: right;
     font-weight: 800;
-    flex: 1.05 1 0;
+    flex: 3.5 1 0;
 }
 
 .main-games-strip {
@@ -73,14 +67,15 @@
 
 .main-game-mark img {
     height: auto;
-    max-height: 88px;
+    max-height: 100px;
     max-width: 100%;
     object-fit: contain;
     width: auto;
 }
 
 .in-progress {
-    filter: none;
+    filter: drop-shadow(2px 0px 20px rgb(255, 255, 255))
+
 }
 
 .incomplete {
