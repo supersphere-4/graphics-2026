@@ -186,14 +186,14 @@
         "team_color":"red",
         "team_number": 3,
         "finished":0,
-        "lp":1109672,
+        "lp":1170805,
         "schedule": {
             "run_order":[8, 6, 12, 2, 3, 5, 7, 10, 4, 0, 11, 1, 9],
             "runs": [
                 {"name":"SayHarry", "game": "Super Mario 64",
-                 "submission_pb":"2:12:37"
-                
-                
+                 "submission_pb":"2:12:37",
+                 "final_pb":"2:10:59",
+                 "lp":23951             
                 },
 
                 {"name":"Ceddy", "game": "Super Mario Sunshine",
@@ -203,8 +203,9 @@
                 },
 
                 {"name":"PinShark", "game": "Super Mario Galaxy",
-                 "submission_pb":"5:54:19"
-                
+                 "submission_pb":"5:54:19",
+                 "final_pb":"5:51:06",
+                 "lp":30076
                 
                 },
 
@@ -216,8 +217,8 @@
 
                 {"name":"ZingoChris", "game": "Banjo-Kazooie",
                  "submission_pb":"2:36:27",
-                 "final_pb":"2:23:24",
-                 "lp":213701
+                 "final_pb":"2:22:52",
+                 "lp":219778
                 },
 
                 {"name":"Znernicus", "game": "Banjo-Tooie",
@@ -240,8 +241,8 @@
 
                 {"name":"C0dek", "game": "Crash Bandicoot 2: Cortex Strikes Back",
                  "submission_pb":"1:16:32",
-                 "final_pb":"1:13:22",
-                 "lp":141243
+                 "final_pb":"1:12:35",
+                 "lp":166860
                 },
 
                 {"name":"Bregermann", "game": "Crash Bandicoot: WARPED",
@@ -264,8 +265,8 @@
 
                 {"name":"Bregermann", "game": "Spyro: Year of the Dragon",
                  "submission_pb":"4:21:09", 
-                 "final_pb":"3:55:47", 
-                 "lp":151352
+                 "final_pb":"3:55:26", 
+                 "lp":172918
                 }
             ]
         }
@@ -365,7 +366,7 @@
         "team_color":"mint",
         "team_number": 5,
         "finished":0,
-        "lp":795244,
+        "lp":883364,
         "schedule": {
             "run_order":[8, 6, 5, 9, 12, 10, 7, 1, 0, 4, 11, 2, 3],
             "runs": [
@@ -442,9 +443,9 @@
                 },
 
                 {"name":"Katsu", "game": "Spyro: Year of the Dragon",
-                 "submission_pb":"3:27:02"
-                
-                
+                 "submission_pb":"3:27:02",
+                 "final_pb":"3:20:35",
+                 "lp":63824
                 }
             ]
         }
@@ -637,7 +638,7 @@
         "team_color":"gold",
         "team_number": 8,
         "finished":0,
-        "lp":576345,
+        "lp":634664,
         "schedule": {
             "run_order":[8, 7, 3, 11, 9, 4, 0, 12, 2, 6, 5, 1, 10],
             "runs": [
@@ -715,8 +716,8 @@
 
                 {"name":"Rui", "game": "Spyro: Year of the Dragon",
                  "submission_pb":"3:44:35",
-                 "final_pb":"3:43:17",
-                 "lp":17228
+                 "final_pb":"3:32:41",
+                 "lp":103530
                 }
             ]
         }
