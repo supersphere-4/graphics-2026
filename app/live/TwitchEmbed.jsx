@@ -21,9 +21,9 @@ const TwitchEmbed = ({team, main, currRun, finished}) => {
         let src = "https://player.twitch.tv/?channel=" + (team.schedule.runs[currRun].name) + "&parent=localhost&autoplay=true&muted=true";
         
 
-        const scale = 0.25;
-        const width = 1920 * scale
-        const height = 1080 * scale
+        const scale = 1.
+        const width = 640 * scale
+        const height = 360 * scale
 
         if (twitch) {
             src = "https://player.twitch.tv/?channel=" + twitch + "&parent=localhost&autoplay=true&muted=true";
@@ -40,7 +40,7 @@ const TwitchEmbed = ({team, main, currRun, finished}) => {
                     </Col>
         )}
         return (
-                <Col className={`border-4 flex ${team.team_color} team-sub-stream`} key={team.team_name}>
+                <Col className={`border-8 flex ${team.team_color} team-sub-stream`} key={team.team_name}>
                     <iframe src={src} width={width} height={height} id={`${team.team_color}-stream`}/>
                 </Col>
         )

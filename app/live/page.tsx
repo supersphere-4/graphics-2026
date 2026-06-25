@@ -242,27 +242,27 @@ function LiveContent() {
             <video className="background-loop" autoPlay loop muted playsInline aria-hidden="true">
                 <source src="/animated-background-loop-grayscale.mp4" type="video/mp4" />
             </video>
-            <Row className={`background-tint background-tint-${main_team?.team_color ?? "rust"}`} aria-hidden="true" />
-            <Row className="broadcast-layout">
+            <div className={`background-tint background-tint-${main_team?.team_color ?? "rust"}`} aria-hidden="true" />
+            <div className="broadcast-layout">
                 <aside className="side-rail">
                     <div className="side-banners-panel" key={'team-banners'}>
                         {banners}
                     </div>
                     <div className={`livesplit-slot ${main_team?.team_color}`} />
+                    <div className="broadcast-logo">
+                        <Image src="/logos/1545.png" alt="The 1545 logo" width={400} height={160} priority/>
+                    </div>
                 </aside>
                 <main className={`main-stream border-8 ${main_team?.team_color} flex`} key={`${main_team?.team_color}-video-main`}>
                     <MainTwitchEmbed main={main_team} currRun={Teams[main - 1].schedule.run_order[currRuns[Teams[main - 1].team_number - 1] - 1]} />
                 </main>
-                <Col className={`main-info-panel border-8 ${main_team?.team_color} flex`} key={`${main_team?.team_name} stats`}>
+                <section className={`main-info-panel border-8 ${main_team?.team_color} flex`} key={`${main_team?.team_name} stats`}>
                     <MainTeamBanner main={main_team} currRun={Teams[main - 1].schedule.run_order[currRuns[Teams[main - 1].team_number - 1] - 1]} runsCompleted={currRuns[Teams[main - 1].team_number - 1] - 1} info={info}/>
-                </Col>
-                <Col className="live-sub-streams">
-                    {/* <div className="broadcast-logo m-4">
-                        <Image src="/logos/1545.png" alt="The 1545 logo" width={500} height={500} priority/>
-                    </div> */}
+                </section>
+                <section className="live-sub-streams">
                     {sub_streams}
-                </Col>
-            </Row>
+                </section>
+            </div>
             <Row className="team-controls">
                 {team_control}
                 <div className="twitch-login-controls">

@@ -133,7 +133,6 @@ body::-webkit-scrollbar {
 .side-banners-panel {
   display: grid;
   gap: 12px;
-  gap: 12px;
   grid-template-rows: repeat(8, minmax(0, 1fr));
   min-height: 0;
   overflow: hidden;
@@ -195,16 +194,18 @@ body::-webkit-scrollbar {
 }
 
 .live-sub-streams > .col {
-  left: 10px;
+  margin: 0;
+  max-width: none;
+  width: 100%;
 }
 
 .team-sub-stream,
 .team-placeholder {
   box-sizing: border-box;
   height: 100%;
-  margin: auto;
-  min-height: 180px;
-  min-width: 320px;
+  margin: 0;
+  min-height: 0;
+  min-width: 406px;
   overflow: hidden;
   padding: 0;
   position: relative;
@@ -273,8 +274,8 @@ body::-webkit-scrollbar {
 .broadcast-logo img {
   height: auto;
   max-height: 100%;
-  max-width: 100%;
-  width: 320px;
+  max-width: 86%;
+  width: auto;
 }
 
 .team-placeholder {
@@ -288,7 +289,7 @@ body::-webkit-scrollbar {
 
 .team-name {
   font-family: 'Encode Sans';
-  font-size: 64px;
+  font-size: 52px;
   font-weight: 1000;
   text-shadow: 12px 30px 30px black; 
   text-align: right;
@@ -296,7 +297,7 @@ body::-webkit-scrollbar {
 }
 
 .runner-name {
-  font-size: 56px;
+  font-size: 40px;
   font-weight: bold;
   text-shadow: 10px 20px 30px black; 
   text-align: right;
@@ -353,23 +354,19 @@ Link .front-page {
 
 .team-control {
   width: auto;
-  height: 200px;
+  height: 180px;
 }
 
 .team-control #sm64 {
-  transform: scale(100%);
+  transform: translate(0%, -20%);
 }
 
 .team-control #smg2 {
-  transform: scale(80%);
-}
-
-.team-control #bk {
-  transform: scale(80%);
+  transform: translate(0%, 0%);
 }
 
 .team-control #c1 {
-  transform: scale(105%);
+  transform: scale(115%);
 }
 
 .team-control *.not-running {
@@ -378,7 +375,7 @@ Link .front-page {
 
 .finish-button, .refresh-button, .undo-finish-button, .main-switch-button {
   font-size: 50px;
-  width: 15%;
+  width: 5%;
 }
 
 .finish-button:not([disabled]):hover, .refresh-button:not([disabled]):hover, .undo-finish-button:not([disabled]):hover, .main-switch-button:not([disabled]):hover {
@@ -420,7 +417,7 @@ Link .front-page {
 .twitch-login-controls {
   align-items: center;
   display: flex;
-  gap: 32px;
+  gap: 16px;
   justify-content: flex-start;
   min-width: 0;
 }
@@ -450,17 +447,18 @@ Link .front-page {
 .team-controls .team-control {
   align-items: center;
   display: flex;
+  height: 86px;
   justify-content: center;
-  margin: 4 !important;
+  margin: 0 !important;
   min-width: 0;
   padding: 4px !important;
-  width: 96px;
+  width: 86px;
 }
 
 .team-controls .team-control img {
   height: auto;
-  max-height: 100px;
-  max-width: 100px;
+  max-height: 78px;
+  max-width: 100%;
   object-fit: contain;
   width: auto;
 }
