@@ -188,6 +188,14 @@ function LiveContent() {
         })
     }
 
+    // Switches the selected team to the main stream and pauses automatic rotation.
+    function switchTeamToMain(team : any) {
+        const runQuery = currRuns.map((run) => `&currRuns=${run}`).join("");
+        const timerQuery = `&timer=${params.get("timer") ?? "paused"}`;
+        setTime(team.team_number);
+        router.replace(`/live?main=${team.team_number}${runQuery}${timerQuery}`)
+    }
+
     // Code for handing switching between each team's respective runs.
     const team_control = Teams.map((team) => {
 
@@ -222,6 +230,9 @@ function LiveContent() {
                 <Button className={`team-control border-8 m-8 px-8 refresh-button ${team.team_color}`} disabled={teamStatus[team.team_number - 1] === 'finished'} onClick={(e) => {refreshStream(team)}} >
                     Refresh
                 </Button>
+                <Button className={`team-control border-8 m-8 px-8 main-switch-button ${team.team_color}`} disabled={isTeamFinished(team.team_number) || team.team_number === main} onClick={(e) => {switchTeamToMain(team)}} >
+                    {team.team_number === main ? "On Main" : "Main"}
+                </Button>
             </Col>
             
         )})
@@ -253,6 +264,7 @@ function LiveContent() {
                 </section>
             </div>
             <Row className="team-controls">
+                {team_control}
                 <div className="twitch-login-controls">
                     <Button className="twitch-login-button" onClick={openTwitchLogin}>
                         Log in to Twitch
@@ -261,7 +273,6 @@ function LiveContent() {
                         Refresh Twitch Embeds
                     </Button>
                 </div>
-                {team_control}
             </Row>
         </Container>
     )
