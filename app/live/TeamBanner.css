@@ -181,6 +181,18 @@ img {
     object-fit: contain;
     width: 150px !important;
     transform: translate(0%, 10%);
+    transform: scale(1.25);
+}
+
+#c1, #sms {
+    transform: scale(1.5);
+}
+#bk, #sm64, #smg2, #dk64, #s1, #s2, #s3 {
+    transform: scale(1.25);
+}
+
+#smg1, #c2, #c3 {
+    transform: scale(1.125);
 }
 
 .side-banners-panel .team-name {
@@ -205,7 +217,7 @@ img {
     display: block;
     font-size: 42px;
     line-height: 1;
-    margin: 0;
+    margin-top: 10;
     overflow: hidden;
     padding: 0;
     text-overflow: ellipsis;
@@ -218,9 +230,9 @@ img {
 .side-banners-panel .runner-pronouns {
     color: white;
     display: block;
-    font-size: 18px;
+    font-size: 30px;
     line-height: 1;
-    margin: 0;
+    margin-top: 4;
     overflow: hidden;
     padding: 0;
     text-overflow: ellipsis;
@@ -237,7 +249,7 @@ img {
     transform: translate(0, 12px);
     width: 168px !important;
 }
-
+*/
 .rust-banner {
     background: url("/logos/team_emotes/rusty_bucket_babes_reversed.png") no-repeat scroll 100% 30%;
     background-size: 45% 150%;
