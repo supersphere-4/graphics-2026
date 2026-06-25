@@ -60,17 +60,32 @@ const AutoFitText = ({children, className, maxSize, minSize = 14}) => {
 const MainTeamBanner = ({main, currRun, runsCompleted, info}) => {
 
         const name = main.schedule.runs[currRun].name;
+        const game = main.schedule.runs[currRun].game;
         const run_order = main.schedule.run_order.slice(0, runsCompleted);
         const pb = main.schedule.runs[currRun].submission_pb;
         const final_pb = (main.schedule.runs[currRun].final_pb);
         const lp = (main.schedule.runs[currRun].lp);
-        const run_info = (final_pb ? ["Submission PB: " + pb,"Current PB: " + final_pb,"League Points: " + lp][info % 3] : "PB: " + pb)
+        const team_lp = main.lp;
+        const run_info = (final_pb ? [
+            `Game ${runsCompleted + 1} / 13`,
+            `Current Game: ${game}`,
+            `Current Runner: ${name}`,
+            `Submission PB: ${pb}`,
+            `Current PB: ${final_pb}`,
+            `League Points: ${lp}`,
+            `Team League Points: ${team_lp}`][info % 7] :  [
+            
+            `Game ${runsCompleted + 1} / 13`,
+            `Current Game: ${game}`,
+            `Runner: ${name}`,
+            `PB: ${pb}`,
+            `Team League Points: ${team_lp}`][info % 5])
 
         const gamesCompleted = Games.map((game) => {
                 let src = "/logos/" + game[1] + ".png";
                 return <div className={`main-game-mark ${main.team_color}`}
                             key={`team-${main.team_number}-${game[1]}`}>
-                                <Image src={src} alt={`${game[0]} logo`} width={160} height={90}
+                                <Image src={src} alt={`${game[0]} logo`} width={160} height={160}
                                        className={run_order.includes(Games.indexOf(game)) ? "complete" :
                                                            currRun == Games.indexOf(game) ? "in-progress" : "incomplete"}/>
                        </div>
@@ -83,7 +98,6 @@ const MainTeamBanner = ({main, currRun, runsCompleted, info}) => {
                 >
                     <div className="main-text">
                         <AutoFitText className="team-name" maxSize={64} minSize={28}>{main.team_name}</AutoFitText>
-                        <AutoFitText className="runner-name" maxSize={52} minSize={24}>{name}</AutoFitText>
                         <AutoFitText className="runner-info" maxSize={40} minSize={20}>{run_info}</AutoFitText>
                     </div>
                     <div className="main-games-strip">
