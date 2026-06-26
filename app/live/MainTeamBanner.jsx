@@ -4,6 +4,7 @@ import Games from "./data/games.json"
 import {Container} from "react-bootstrap"
 import Image from "next/image"
 import "./MainTeamBanner.css"
+import RunnerInfo from "./data/runnerinfo_new.json"
 import {useCallback, useLayoutEffect, useRef, useState} from "react"
 
 const AutoFitText = ({children, className, maxSize, minSize = 14}) => {
@@ -66,13 +67,14 @@ const MainTeamBanner = ({main, currRun, runsCompleted, info}) => {
         const final_pb = (main.schedule.runs[currRun].final_pb);
         const lp = (main.schedule.runs[currRun].lp);
         const team_lp = main.lp;
+        const cumulative_lp = RunnerInfo.find((runner) => runner.name == name).lp;
         const run_info = (final_pb ? [
             `Game ${runsCompleted + 1} / 13`,
             `Current Game: ${game}`,
             `Current Runner: ${name}`,
             `Submission PB: ${pb}`,
             `Current PB: ${final_pb}`,
-            `League Points: ${lp}`,
+            `League Points: ${cumulative_lp ?? lp}`,
             `Team League Points: ${team_lp}`][info % 7] :  [
             
             `Game ${runsCompleted + 1} / 13`,

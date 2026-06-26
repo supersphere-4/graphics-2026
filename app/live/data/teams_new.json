@@ -298,7 +298,7 @@
                 
                 },
 
-                {"name":"hardcoregaming", "game": "Super Mario Galaxy 2",
+                {"name":"HardcoreGaming", "game": "Super Mario Galaxy 2",
                  "submission_pb":"8:58:36"
             
             
@@ -599,9 +599,9 @@
                 },
 
                 {"name":"Nerf", "game": "Crash Bandicoot",
-                 "submission_pb":"1:47:53"
-                
-                
+                 "submission_pb":"1:47:53",
+                 "final_pb":"1:36:19",
+                 "lp":77522
                 },
 
                 {"name":"NightShadow295", "game": "Crash Bandicoot 2: Cortex Strikes Back",
