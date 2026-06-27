@@ -279,7 +279,7 @@
         "finished":0,
         "lp":999715,
         "schedule": {
-            "run_order":[6, 9, 5, 0, 10, 2, 7, 11, 8, 12, 4, 2, 3],
+            "run_order":[6, 9, 5, 0, 10, 1, 7, 11, 8, 12, 4, 2, 3],
             "runs": [
                 {"name":"Alana", "game": "Super Mario 64",
                 "submission_pb":"1:59:42",
