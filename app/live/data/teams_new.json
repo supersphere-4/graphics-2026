@@ -554,7 +554,7 @@
         "finished":0,
         "lp":330170,
         "schedule": {
-            "run_order":[8, 0, 10, 2, 7, 9, 3, 5, 11, 12, 1, 6, 4],
+            "run_order":[8, 0, 10, 7, 2, 9, 3, 5, 11, 12, 1, 6, 4],
             "runs": [
                 {"name":"Druz", "game": "Super Mario 64",
                  "submission_pb":"1:46:57",
