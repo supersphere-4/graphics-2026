@@ -279,7 +279,7 @@
         "finished":0,
         "lp":999715,
         "schedule": {
-            "run_order":[6, 9, 2, 10, 5, 7, 11, 8, 12, 4, 0, 1, 3],
+            "run_order":[6, 9, 5, 0, 10, 7, 11, 8, 12, 4, 2, 1, 3],
             "runs": [
                 {"name":"Alana", "game": "Super Mario 64",
                 "submission_pb":"1:59:42",
@@ -554,7 +554,7 @@
         "finished":0,
         "lp":330170,
         "schedule": {
-            "run_order":[8, 0, 10, 7, 2, 9, 3, 5, 11, 12, 1, 6, 4],
+            "run_order":[8, 0, 10, 7, 11, 2, 9, 3, 5, 12, 1, 6, 4],
             "runs": [
                 {"name":"Druz", "game": "Super Mario 64",
                  "submission_pb":"1:46:57",
