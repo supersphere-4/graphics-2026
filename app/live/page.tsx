@@ -125,7 +125,7 @@ function LiveContent() {
         console.log("Time: " + time)
         }, {delay: rate * 1000 * 60, enabled: teamStatus.filter((status) => status !== 'finished').length > 1 && !params.get("timer")})
 
-    // The alternate timer for switching streams. Enabled after a manual switch. The main stream takes twice as long to cycle than the default timer.
+    // The alternate timer for switching streams. Enabled after a manual switch.
     useIntervalAdvanced(() => {
         setTime(prevTime => prevTime + 1);
         let newMain = time % 8 + 1;
@@ -140,7 +140,7 @@ function LiveContent() {
         newQuery = newQuery.replaceAll(',','')
         router.replace(newQuery)
         console.log("Time: " + time)
-        }, {delay: rate * 2 * 1000 * 60, enabled: teamStatus.filter((status) => status !== 'finished').length > 1 && params.get("timer")})
+        }, {delay: rate * 1 * 1000 * 60, enabled: teamStatus.filter((status) => status !== 'finished').length > 1 && params.get("timer")})
     
     // The timer for cycling between info on the side panel.
     useIntervalAdvanced(() => {setInfo(prevTime => prevTime + 1)}, {delay: rate * 1000})
