@@ -98,7 +98,7 @@
         "finished":0,
         "lp":532653,
         "schedule": {
-            "run_order":[0, 8, 2, 4, 1, 10, 9, 7, 12, 6, 3, 5, 11],
+            "run_order":[0, 8, 2, 4, 5, 10, 9, 7, 12, 6, 3, 1, 11],
             "runs": [
                 {"name":"SheilaSlays", "game": "Super Mario 64",
                  "submission_pb":"2:07:48"
